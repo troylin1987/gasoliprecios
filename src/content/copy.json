@@ -17,7 +17,7 @@
       "closeMenu": "Cerrar menú",
       "search": "Buscador",
       "about": "Acerca de",
-      "language": "Idioma"
+      "language": "Selección de idioma"
     },
     "filters": {
       "eyebrow": "Buscador de gasolineras",
@@ -150,7 +150,7 @@
       "closeMenu": "Close menu",
       "search": "Search",
       "about": "About",
-      "language": "Language"
+      "language": "Language selection"
     },
     "filters": {
       "eyebrow": "Fuel station finder",
@@ -268,7 +268,7 @@
   "ca": {
     "_meta": { "name": "Català", "iso3": "CAT", "flag": "🇪🇸" },
     "app": { "tagline": "Cercador de benzina barata", "updated": "Actualitzat", "loading": "Carregant..." },
-    "navigation": { "primary": "Principal", "openMenu": "Obrir menú", "closeMenu": "Tancar menú", "search": "Cercador", "about": "Sobre el projecte", "language": "Idioma" },
+    "navigation": { "primary": "Principal", "openMenu": "Obrir menú", "closeMenu": "Tancar menú", "search": "Cercador", "about": "Sobre el projecte", "language": "Selecció d'idioma" },
     "filters": {
       "eyebrow": "Cercador de benzineres",
       "title": "Filtres ràpids",
@@ -299,7 +299,7 @@
   "gl": {
     "_meta": { "name": "Galego", "iso3": "GLG", "flag": "🇪🇸" },
     "app": { "tagline": "Buscador de gasolina barata", "updated": "Actualizado", "loading": "Cargando..." },
-    "navigation": { "openMenu": "Abrir menú", "closeMenu": "Pechar menú", "search": "Buscador", "about": "Acerca de", "language": "Idioma" },
+    "navigation": { "openMenu": "Abrir menú", "closeMenu": "Pechar menú", "search": "Buscador", "about": "Acerca de", "language": "Selección de idioma" },
     "filters": { "eyebrow": "Buscador de gasolineiras", "title": "Filtros rápidos", "useLocation": "Usar a miña localización", "updateLocation": "Actualizar localización", "loadingLocation": "Obtendo localización...", "locationError": "Non puidemos acceder á túa localización. Podes seguir filtrando por zona.", "queryLabel": "Buscar", "queryPlaceholder": "Rótulo, enderezo, localidade...", "ccaa": "Comunidade autónoma", "province": "Provincia", "municipality": "Concello", "all": "Todas", "allFuel": "Todos", "fuel": "Combustible", "openNow": "Só abertas agora", "sort": "Orde", "byDistance": "Proximidade", "byPrice": "Prezo" },
     "results": { "title": "Resultados", "stations": "estacións", "oneStation": "estación", "emptyTitle": "Non hai estacións con eses criterios.", "emptyHelp": "Proba a ampliar a zona, quitar o filtro de abertas ou cambiar combustible.", "location": "Localización", "schedule": "Horario", "availableFuel": "Combustible dispoñible", "distance": "Distancia", "open": "Aberta", "closed": "Pechada", "directions": "Como chegar" },
     "view": { "list": "Lista", "map": "Mapa", "yourLocation": "A túa localización", "openMaps": "Abrir en Google Maps" },
@@ -311,7 +311,7 @@
   "eu": {
     "_meta": { "name": "Euskara", "iso3": "EUS", "flag": "🇪🇸" },
     "app": { "tagline": "Gasolina merkea bilatzeko tresna", "updated": "Eguneratuta", "loading": "Kargatzen..." },
-    "navigation": { "openMenu": "Ireki menua", "closeMenu": "Itxi menua", "search": "Bilatzailea", "about": "Honi buruz", "language": "Hizkuntza" },
+    "navigation": { "openMenu": "Ireki menua", "closeMenu": "Itxi menua", "search": "Bilatzailea", "about": "Honi buruz", "language": "Hizkuntza hautatzea" },
     "filters": { "eyebrow": "Gasolindegi bilatzailea", "title": "Iragazki azkarrak", "useLocation": "Erabili nire kokapena", "updateLocation": "Eguneratu kokapena", "loadingLocation": "Kokapena lortzen...", "locationError": "Ezin izan dugu zure kokapena eskuratu. Eremuaren arabera iragazten jarrai dezakezu.", "queryLabel": "Bilatu", "queryPlaceholder": "Izena, helbidea, herria...", "ccaa": "Autonomia erkidegoa", "province": "Probintzia", "municipality": "Udalerria", "all": "Guztiak", "allFuel": "Guztiak", "fuel": "Erregaia", "openNow": "Orain irekita bakarrik", "sort": "Ordena", "byDistance": "Hurbiltasuna", "byPrice": "Prezioa" },
     "results": { "title": "Emaitzak", "stations": "gasolindegi", "oneStation": "gasolindegi", "emptyTitle": "Ez dago irizpide horiek betetzen dituen gasolindegirik.", "emptyHelp": "Saiatu eremua zabaltzen, irekita iragazkia kentzen edo erregaia aldatzen.", "location": "Kokapena", "schedule": "Ordutegia", "availableFuel": "Erregai erabilgarria", "distance": "Distantzia", "open": "Irekita", "closed": "Itxita", "directions": "Nola iritsi" },
     "view": { "list": "Zerrenda", "map": "Mapa", "yourLocation": "Zure kokapena", "openMaps": "Ireki Google Maps-en" },
@@ -323,7 +323,7 @@
   "fr": {
     "_meta": { "name": "Français", "iso3": "FRA", "flag": "🇫🇷" },
     "app": { "tagline": "Recherche d'essence bon marché", "updated": "Mis à jour", "loading": "Chargement..." },
-    "navigation": { "openMenu": "Ouvrir le menu", "closeMenu": "Fermer le menu", "search": "Recherche", "about": "À propos", "language": "Langue" },
+    "navigation": { "openMenu": "Ouvrir le menu", "closeMenu": "Fermer le menu", "search": "Recherche", "about": "À propos", "language": "Sélection de la langue" },
     "filters": { "eyebrow": "Recherche de stations-service", "title": "Filtres rapides", "useLocation": "Utiliser ma position", "updateLocation": "Mettre à jour la position", "loadingLocation": "Obtention de la position...", "locationError": "Impossible d'accéder à votre position. Vous pouvez toujours filtrer par zone.", "queryLabel": "Rechercher", "queryPlaceholder": "Enseigne, adresse, ville...", "ccaa": "Région", "province": "Province", "municipality": "Commune", "all": "Toutes", "allFuel": "Tous", "fuel": "Carburant", "openNow": "Ouvertes maintenant", "sort": "Tri", "byDistance": "Proximité", "byPrice": "Prix" },
     "results": { "title": "Résultats", "stations": "stations", "oneStation": "station", "emptyTitle": "Aucune station ne correspond à ces critères.", "emptyHelp": "Essayez d'élargir la zone, de retirer le filtre ouvert ou de changer de carburant.", "location": "Localisation", "schedule": "Horaires", "availableFuel": "Carburant disponible", "distance": "Distance", "open": "Ouverte", "closed": "Fermée", "directions": "Itinéraire" },
     "view": { "list": "Liste", "map": "Carte", "yourLocation": "Votre position", "openMaps": "Ouvrir dans Google Maps" },
@@ -335,7 +335,7 @@
   "it": {
     "_meta": { "name": "Italiano", "iso3": "ITA", "flag": "🇮🇹" },
     "app": { "tagline": "Cerca benzina economica", "updated": "Aggiornato", "loading": "Caricamento..." },
-    "navigation": { "openMenu": "Apri menu", "closeMenu": "Chiudi menu", "search": "Cerca", "about": "Info", "language": "Lingua" },
+    "navigation": { "openMenu": "Apri menu", "closeMenu": "Chiudi menu", "search": "Cerca", "about": "Info", "language": "Selezione lingua" },
     "filters": { "eyebrow": "Cerca distributori", "title": "Filtri rapidi", "useLocation": "Usa la mia posizione", "updateLocation": "Aggiorna posizione", "loadingLocation": "Recupero posizione...", "locationError": "Non possiamo accedere alla tua posizione. Puoi continuare a filtrare per zona.", "queryLabel": "Cerca", "queryPlaceholder": "Marchio, indirizzo, località...", "ccaa": "Regione", "province": "Provincia", "municipality": "Comune", "all": "Tutte", "allFuel": "Tutti", "fuel": "Carburante", "openNow": "Solo aperte ora", "sort": "Ordina", "byDistance": "Vicinanza", "byPrice": "Prezzo" },
     "results": { "title": "Risultati", "stations": "stazioni", "oneStation": "stazione", "emptyTitle": "Nessuna stazione con questi criteri.", "emptyHelp": "Prova ad ampliare l'area, togliere il filtro aperte o cambiare carburante.", "location": "Localizzazione", "schedule": "Orario", "availableFuel": "Carburante disponibile", "distance": "Distanza", "open": "Aperta", "closed": "Chiusa", "directions": "Indicazioni" },
     "view": { "list": "Lista", "map": "Mappa", "yourLocation": "La tua posizione", "openMaps": "Apri in Google Maps" },
@@ -347,7 +347,7 @@
   "de": {
     "_meta": { "name": "Deutsch", "iso3": "DEU", "flag": "🇩🇪" },
     "app": { "tagline": "Suche für günstigen Kraftstoff", "updated": "Aktualisiert", "loading": "Lädt..." },
-    "navigation": { "openMenu": "Menü öffnen", "closeMenu": "Menü schließen", "search": "Suche", "about": "Über", "language": "Sprache" },
+    "navigation": { "openMenu": "Menü öffnen", "closeMenu": "Menü schließen", "search": "Suche", "about": "Über", "language": "Sprachauswahl" },
     "filters": { "eyebrow": "Tankstellensuche", "title": "Schnellfilter", "useLocation": "Meinen Standort nutzen", "updateLocation": "Standort aktualisieren", "loadingLocation": "Standort wird ermittelt...", "locationError": "Wir konnten nicht auf deinen Standort zugreifen. Du kannst weiter nach Gebiet filtern.", "queryLabel": "Suchen", "queryPlaceholder": "Marke, Adresse, Ort...", "ccaa": "Region", "province": "Provinz", "municipality": "Gemeinde", "all": "Alle", "allFuel": "Alle", "fuel": "Kraftstoff", "openNow": "Nur jetzt geöffnet", "sort": "Sortierung", "byDistance": "Nähe", "byPrice": "Preis" },
     "results": { "title": "Ergebnisse", "stations": "Tankstellen", "oneStation": "Tankstelle", "emptyTitle": "Keine Tankstellen mit diesen Kriterien.", "emptyHelp": "Vergrößere das Gebiet, entferne den Geöffnet-Filter oder ändere den Kraftstoff.", "location": "Standort", "schedule": "Öffnungszeiten", "availableFuel": "Verfügbare Kraftstoffe", "distance": "Entfernung", "open": "Geöffnet", "closed": "Geschlossen", "directions": "Route" },
     "view": { "list": "Liste", "map": "Karte", "yourLocation": "Dein Standort", "openMaps": "In Google Maps öffnen" },
@@ -359,7 +359,7 @@
   "zh": {
     "_meta": { "name": "中文", "iso3": "ZHO", "flag": "🇨🇳" },
     "app": { "tagline": "低价加油站搜索", "updated": "已更新", "loading": "加载中..." },
-    "navigation": { "openMenu": "打开菜单", "closeMenu": "关闭菜单", "search": "搜索", "about": "关于", "language": "语言" },
+    "navigation": { "openMenu": "打开菜单", "closeMenu": "关闭菜单", "search": "搜索", "about": "关于", "language": "语言选择" },
     "filters": { "eyebrow": "加油站搜索", "title": "快速筛选", "useLocation": "使用我的位置", "updateLocation": "更新位置", "loadingLocation": "正在获取位置...", "locationError": "无法访问你的位置。你仍可以按区域筛选。", "queryLabel": "搜索", "queryPlaceholder": "品牌、地址、城镇...", "ccaa": "自治区", "province": "省", "municipality": "市镇", "all": "全部", "allFuel": "全部", "fuel": "燃料", "openNow": "仅显示当前营业", "sort": "排序", "byDistance": "距离", "byPrice": "价格" },
     "results": { "title": "结果", "stations": "座加油站", "oneStation": "座加油站", "emptyTitle": "没有符合条件的加油站。", "emptyHelp": "请扩大区域、取消营业筛选或更换燃料。", "location": "位置", "schedule": "营业时间", "availableFuel": "可用燃料", "distance": "距离", "open": "营业中", "closed": "已关闭", "directions": "路线" },
     "view": { "list": "列表", "map": "地图", "yourLocation": "你的位置", "openMaps": "在 Google Maps 中打开" },
@@ -371,7 +371,7 @@
   "ja": {
     "_meta": { "name": "日本語", "iso3": "JPN", "flag": "🇯🇵" },
     "app": { "tagline": "安いガソリン検索", "updated": "更新", "loading": "読み込み中..." },
-    "navigation": { "openMenu": "メニューを開く", "closeMenu": "メニューを閉じる", "search": "検索", "about": "概要", "language": "言語" },
+    "navigation": { "openMenu": "メニューを開く", "closeMenu": "メニューを閉じる", "search": "検索", "about": "概要", "language": "言語選択" },
     "filters": { "eyebrow": "サービスステーション検索", "title": "クイックフィルター", "useLocation": "現在地を使う", "updateLocation": "現在地を更新", "loadingLocation": "現在地を取得中...", "locationError": "現在地にアクセスできません。地域で絞り込みできます。", "queryLabel": "検索", "queryPlaceholder": "ブランド、住所、町名...", "ccaa": "自治州", "province": "県", "municipality": "自治体", "all": "すべて", "allFuel": "すべて", "fuel": "燃料", "openNow": "営業中のみ", "sort": "並び順", "byDistance": "近い順", "byPrice": "価格" },
     "results": { "title": "結果", "stations": "件のスタンド", "oneStation": "件のスタンド", "emptyTitle": "条件に合うスタンドがありません。", "emptyHelp": "地域を広げるか、営業中フィルターや燃料を変更してください。", "location": "場所", "schedule": "営業時間", "availableFuel": "利用可能な燃料", "distance": "距離", "open": "営業中", "closed": "閉店", "directions": "行き方" },
     "view": { "list": "リスト", "map": "地図", "yourLocation": "現在地", "openMaps": "Google Maps で開く" },
@@ -383,7 +383,7 @@
   "ru": {
     "_meta": { "name": "Русский", "iso3": "RUS", "flag": "🇷🇺" },
     "app": { "tagline": "Поиск дешевого топлива", "updated": "Обновлено", "loading": "Загрузка..." },
-    "navigation": { "openMenu": "Открыть меню", "closeMenu": "Закрыть меню", "search": "Поиск", "about": "О проекте", "language": "Язык" },
+    "navigation": { "openMenu": "Открыть меню", "closeMenu": "Закрыть меню", "search": "Поиск", "about": "О проекте", "language": "Выбор языка" },
     "filters": { "eyebrow": "Поиск АЗС", "title": "Быстрые фильтры", "useLocation": "Использовать мое местоположение", "updateLocation": "Обновить местоположение", "loadingLocation": "Получаем местоположение...", "locationError": "Не удалось получить местоположение. Можно продолжить фильтрацию по зоне.", "queryLabel": "Поиск", "queryPlaceholder": "Бренд, адрес, город...", "ccaa": "Регион", "province": "Провинция", "municipality": "Муниципалитет", "all": "Все", "allFuel": "Все", "fuel": "Топливо", "openNow": "Только открытые сейчас", "sort": "Сортировка", "byDistance": "Близость", "byPrice": "Цена" },
     "results": { "title": "Результаты", "stations": "АЗС", "oneStation": "АЗС", "emptyTitle": "Нет АЗС с такими критериями.", "emptyHelp": "Попробуйте расширить зону, убрать фильтр открытых или сменить топливо.", "location": "Местоположение", "schedule": "График", "availableFuel": "Доступное топливо", "distance": "Расстояние", "open": "Открыто", "closed": "Закрыто", "directions": "Маршрут" },
     "view": { "list": "Список", "map": "Карта", "yourLocation": "Ваше местоположение", "openMaps": "Открыть в Google Maps" },
@@ -395,7 +395,7 @@
   "pl": {
     "_meta": { "name": "Polski", "iso3": "POL", "flag": "🇵🇱" },
     "app": { "tagline": "Wyszukiwarka taniego paliwa", "updated": "Zaktualizowano", "loading": "Ładowanie..." },
-    "navigation": { "openMenu": "Otwórz menu", "closeMenu": "Zamknij menu", "search": "Szukaj", "about": "O projekcie", "language": "Język" },
+    "navigation": { "openMenu": "Otwórz menu", "closeMenu": "Zamknij menu", "search": "Szukaj", "about": "O projekcie", "language": "Wybór języka" },
     "filters": { "eyebrow": "Wyszukiwarka stacji", "title": "Szybkie filtry", "useLocation": "Użyj mojej lokalizacji", "updateLocation": "Odśwież lokalizację", "loadingLocation": "Pobieranie lokalizacji...", "locationError": "Nie udało się uzyskać lokalizacji. Nadal możesz filtrować według obszaru.", "queryLabel": "Szukaj", "queryPlaceholder": "Marka, adres, miejscowość...", "ccaa": "Region", "province": "Prowincja", "municipality": "Gmina", "all": "Wszystkie", "allFuel": "Wszystkie", "fuel": "Paliwo", "openNow": "Tylko teraz otwarte", "sort": "Sortuj", "byDistance": "Bliskość", "byPrice": "Cena" },
     "results": { "title": "Wyniki", "stations": "stacje", "oneStation": "stacja", "emptyTitle": "Brak stacji spełniających kryteria.", "emptyHelp": "Spróbuj poszerzyć obszar, wyłączyć filtr otwarcia albo zmienić paliwo.", "location": "Lokalizacja", "schedule": "Godziny", "availableFuel": "Dostępne paliwo", "distance": "Odległość", "open": "Otwarta", "closed": "Zamknięta", "directions": "Trasa" },
     "view": { "list": "Lista", "map": "Mapa", "yourLocation": "Twoja lokalizacja", "openMaps": "Otwórz w Google Maps" },

@@ -132,6 +132,8 @@ Campos de precio:
 - El subtitulo del header debe ser `Buscador de gasolina barata`.
 - En mobile, el menu hamburguesa debe abrir un menu con `Buscador` y `Acerca de`, no navegar directamente a otra pagina.
 - El menu hamburguesa debe mostrarse como panel superpuesto/deslizante sobre el contenido, sin empujar la pagina hacia abajo.
+- En mobile, al abrir el menu hamburguesa, debe mostrarse un fondo suficientemente solido para que los elementos del menu se lean claramente aunque tape el contenido.
+- En mobile, la label de idioma debe ser `Seleccion de idioma` y debe estar traducida en todos los idiomas soportados.
 - Debe mostrarse la ultima fecha de actualizacion de precios.
 - La ultima fecha de actualizacion debe verse tambien en mobile.
 - Debe existir footer con informacion relevante de datos, mapas y atribuciones.

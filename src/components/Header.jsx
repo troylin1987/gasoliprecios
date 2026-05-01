@@ -63,14 +63,14 @@ export function Header({ updatedAt, currentSection, onSectionChange, language, s
 
       <div
         className={[
-          'fixed inset-0 top-[4.15rem] z-40 bg-black/45 backdrop-blur-sm transition-opacity duration-200 md:hidden',
+          'fixed inset-0 top-[4.15rem] z-40 bg-black/90 backdrop-blur-md transition-opacity duration-200 md:hidden',
           menuOpen ? 'opacity-100' : 'pointer-events-none opacity-0',
         ].join(' ')}
         onClick={() => setMenuOpen(false)}
       />
       <div
         className={[
-          'fixed left-3 right-3 top-[4.55rem] z-50 rounded-lg border border-white/10 bg-zinc-950/98 p-3 shadow-glow transition duration-300 md:hidden',
+          'fixed left-3 right-3 top-[4.55rem] z-50 rounded-lg border border-aqua/25 bg-black p-3 shadow-glow transition duration-300 md:hidden',
           menuOpen ? 'translate-y-0 opacity-100' : 'pointer-events-none -translate-y-5 opacity-0',
         ].join(' ')}
       >
@@ -81,7 +81,7 @@ export function Header({ updatedAt, currentSection, onSectionChange, language, s
           <button className={mobileNavClass(currentSection === 'about')} onClick={() => goTo('about')}>
             {text.navigation.about}
           </button>
-          <div className="rounded-lg border border-white/10 bg-black p-3">
+          <div className="rounded-lg border border-white/10 bg-zinc-950 p-3">
             <span className="mb-2 block text-xs font-bold text-zinc-400">{text.navigation.language}</span>
             <div className="grid max-h-64 grid-cols-2 gap-2 overflow-y-auto pr-1">
               {LANGUAGE_OPTIONS.map((option) => (
