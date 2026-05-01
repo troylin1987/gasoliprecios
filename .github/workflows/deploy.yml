@@ -35,6 +35,8 @@ jobs:
         run: npm run update:data
       - name: Build
         run: GITHUB_PAGES=true npm run build
+        env:
+          VITE_GA_MEASUREMENT_ID: ${{ secrets.VITE_GA_MEASUREMENT_ID }}
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:

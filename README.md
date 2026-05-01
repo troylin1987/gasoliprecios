@@ -125,6 +125,14 @@ Puedes crear un fichero `.env.local` a partir de `.env.example`.
 
 La analítica no se carga hasta que el usuario acepta el aviso de consentimiento.
 
+En GitHub Actions, define el secret `VITE_GA_MEASUREMENT_ID` en:
+
+```text
+Settings > Secrets and variables > Actions
+```
+
+Más detalle en [docs/production-setup.md](docs/production-setup.md).
+
 ## Despliegue en GitHub Pages
 
 El despliegue está configurado en:
@@ -157,6 +165,12 @@ En GitHub:
 5. Lanza el workflow manualmente o haz push a `main`.
 
 El workflow también está programado para ejecutarse cada 30 minutos y mantener actualizado el JSON publicado.
+
+## Dominio propio
+
+La app está preparada para funcionar en GitHub Pages. Cuando el dominio final esté decidido, configura el dominio en `Settings > Pages` y añade `public/CNAME` con el dominio correspondiente.
+
+Más detalle en [docs/production-setup.md](docs/production-setup.md).
 
 ## Estructura principal
 
