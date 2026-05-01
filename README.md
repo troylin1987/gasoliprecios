@@ -145,7 +145,7 @@ El workflow:
 
 1. Instala dependencias.
 2. Refresca los datos oficiales.
-3. Compila la aplicación con la base correcta para GitHub Pages.
+3. Compila la aplicación con base `/`, adecuada para el dominio propio.
 4. Publica `dist/` usando GitHub Pages.
 
 URL de producción:

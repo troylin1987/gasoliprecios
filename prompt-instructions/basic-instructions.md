@@ -209,6 +209,8 @@ Campos de precio:
 - Para produccion, canonical y OG deben apuntar a `https://www.gasoliprecios.com/`.
 - El fichero `public/CNAME` debe contener `www.gasoliprecios.com`.
 - El ID de Google Analytics configurado para produccion es `G-CQ3MN53CLR`.
+- Con dominio propio, Vite debe compilar con `base: '/'`, no con `/gasoliprecios/`.
+- La etiqueta base de Google Analytics debe estar presente en `index.html` con Consent Mode denegado por defecto para que Google detecte la etiqueta y la app conceda analitica solo tras consentimiento.
 
 ## Supuestos actuales
 

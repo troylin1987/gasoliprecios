@@ -42,6 +42,8 @@ Value: G-CQ3MN53CLR
 
 La aplicación sólo cargará Google Analytics cuando el usuario acepte el aviso de analítica.
 
+La etiqueta base de Google se declara en `index.html` con Consent Mode en `denied` por defecto. Cuando el usuario acepta la analítica, la aplicación actualiza el consentimiento a `granted`.
+
 ## Dominio propio en GitHub Pages
 
 1. El dominio final elegido es:
