@@ -118,7 +118,7 @@ Sirve localmente la build generada.
 La integración está preparada mediante la variable:
 
 ```bash
-VITE_GA_MEASUREMENT_ID=G-XXXXXXXXXX
+VITE_GA_MEASUREMENT_ID=G-CQ3MN53CLR
 ```
 
 Puedes crear un fichero `.env.local` a partir de `.env.example`.
@@ -148,10 +148,10 @@ El workflow:
 3. Compila la aplicación con la base correcta para GitHub Pages.
 4. Publica `dist/` usando GitHub Pages.
 
-URL esperada:
+URL de producción:
 
 ```text
-https://troylin1987.github.io/gasoliprecios/
+https://www.gasoliprecios.com/
 ```
 
 ## Configuración de GitHub Pages
@@ -168,7 +168,13 @@ El workflow también está programado para ejecutarse cada 30 minutos y mantener
 
 ## Dominio propio
 
-La app está preparada para funcionar en GitHub Pages. Cuando el dominio final esté decidido, configura el dominio en `Settings > Pages` y añade `public/CNAME` con el dominio correspondiente.
+La app está preparada para funcionar en GitHub Pages con:
+
+```text
+www.gasoliprecios.com
+```
+
+El fichero `public/CNAME` ya contiene el dominio final. En el proveedor DNS debe existir un registro `CNAME` para `www` apuntando a `troylin1987.github.io`.
 
 Más detalle en [docs/production-setup.md](docs/production-setup.md).
 

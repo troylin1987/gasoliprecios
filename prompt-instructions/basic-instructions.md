@@ -205,7 +205,10 @@ Campos de precio:
 - En detalles utiles debe indicarse que la interpretacion de horarios puede contener errores, que los resultados se limitan a 20 estaciones para funcionamiento adecuado y que se recomienda activar la ubicacion.
 - La seccion final de `Acerca de` debe titularse `Agradecimientos` y no debe mostrar subtitulo si no aporta contenido.
 - El nombre `Mario Gijon` debe ser enlace a `https://www.mariogijon.es`; no debe aparecer el texto suelto `mariogijon.es` al final.
-- Para el repositorio `https://github.com/troylin1987/gasoliprecios`, canonical y OG deben apuntar a `https://troylin1987.github.io/gasoliprecios/`.
+- El dominio final de produccion es `https://www.gasoliprecios.com/`.
+- Para produccion, canonical y OG deben apuntar a `https://www.gasoliprecios.com/`.
+- El fichero `public/CNAME` debe contener `www.gasoliprecios.com`.
+- El ID de Google Analytics configurado para produccion es `G-CQ3MN53CLR`.
 
 ## Supuestos actuales
 

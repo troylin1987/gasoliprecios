@@ -14,7 +14,7 @@ Esta guía cubre los dos últimos pasos antes de publicar GASOLIPRECIOS como web
 5. Indica la URL final de producción:
 
 ```text
-https://troylin1987.github.io/gasoliprecios/
+https://www.gasoliprecios.com/
 ```
 
 Si ya tienes dominio propio, usa el dominio final en lugar de la URL de GitHub Pages.
@@ -22,7 +22,7 @@ Si ya tienes dominio propio, usa el dominio final en lugar de la URL de GitHub P
 6. Copia el `Measurement ID`, con formato similar a:
 
 ```text
-G-XXXXXXXXXX
+G-CQ3MN53CLR
 ```
 
 7. En GitHub, entra en:
@@ -35,7 +35,7 @@ Settings > Secrets and variables > Actions > New repository secret
 
 ```text
 Name: VITE_GA_MEASUREMENT_ID
-Value: G-XXXXXXXXXX
+Value: G-CQ3MN53CLR
 ```
 
 9. Ejecuta de nuevo el workflow `Deploy to GitHub Pages`.
@@ -44,10 +44,9 @@ La aplicación sólo cargará Google Analytics cuando el usuario acepte el aviso
 
 ## Dominio propio en GitHub Pages
 
-1. Decide el dominio final, por ejemplo:
+1. El dominio final elegido es:
 
 ```text
-gasoliprecios.com
 www.gasoliprecios.com
 ```
 
@@ -57,7 +56,7 @@ www.gasoliprecios.com
 Settings > Pages > Custom domain
 ```
 
-3. Escribe el dominio final y guarda.
+3. Escribe `www.gasoliprecios.com` y guarda.
 
 4. Activa `Enforce HTTPS` cuando GitHub permita hacerlo.
 
@@ -75,7 +74,7 @@ Para un dominio raíz tipo `gasoliprecios.com`, GitHub Pages suele requerir regi
 
 ## Fichero CNAME
 
-Cuando el dominio final esté decidido, añade un fichero:
+El fichero ya está añadido:
 
 ```text
 public/CNAME
@@ -84,10 +83,8 @@ public/CNAME
 Con una sola línea:
 
 ```text
-www.tudominio.com
+www.gasoliprecios.com
 ```
-
-No se ha añadido todavía porque el dominio final no está definido. Publicar un `CNAME` incorrecto puede romper el despliegue de Pages.
 
 ## Checklist final
 
