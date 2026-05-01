@@ -52,6 +52,8 @@ Para evitar problemas de CORS y reducir llamadas innecesarias:
 - En producción se sirve un JSON estático desde el mismo origen de GitHub Pages.
 - GitHub Actions refresca los datos oficiales antes de compilar y publicar.
 - La aplicación usa caché del navegador para mantener una experiencia rápida.
+- Cada build genera un número de versión visible en el footer y un `version.json`.
+- Los assets se publican con hash de contenido para evitar servir código antiguo tras un despliegue.
 
 ## Requisitos
 
@@ -106,6 +108,7 @@ npm run build
 ```
 
 Genera la build de producción en `dist/`.
+Antes de compilar se genera automáticamente `src/generated/version.js` y `public/version.json`.
 
 ```bash
 npm run preview

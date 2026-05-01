@@ -2,7 +2,18 @@ import { ExternalLink, MapPin, Clock, Fuel } from 'lucide-react';
 import { formatDistance, formatPrice, mapsUrl } from '../lib/format';
 import { trackEvent } from '../lib/analytics';
 
-export function ResultsList({ results, selectedFuel, text }) {
+export function ResultsList({ results, selectedFuel, text, hasSearched }) {
+  if (!hasSearched) {
+    return (
+      <div className="flex min-h-80 items-center justify-center rounded-lg border border-aqua/20 bg-[#0b0d0d] p-6 text-center">
+        <div>
+          <p className="text-base font-bold text-white">{text.results.waitingTitle}</p>
+          <p className="mt-2 text-sm text-zinc-400">{text.results.waitingHelp}</p>
+        </div>
+      </div>
+    );
+  }
+
   if (!results.length) {
     return (
       <div className="flex min-h-80 items-center justify-center rounded-lg border border-white/10 bg-zinc-950 p-6 text-center">

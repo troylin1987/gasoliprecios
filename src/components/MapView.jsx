@@ -12,13 +12,24 @@ const stationIcon = new L.DivIcon({
   iconAnchor: [14, 14],
 });
 
-export function MapView({ results, userLocation, selectedFuel, text }) {
+export function MapView({ results, userLocation, selectedFuel, text, hasSearched }) {
   const center = userLocation || results[0] || { lat: 40.4168, lng: -3.7038 };
   const bounds = useMemo(() => {
     const points = results.map((station) => [station.lat, station.lng]);
     if (userLocation) points.push([userLocation.lat, userLocation.lng]);
     return points;
   }, [results, userLocation]);
+
+  if (!hasSearched) {
+    return (
+      <div className="flex h-[72vh] items-center justify-center rounded-lg border border-aqua/20 bg-[#0b0d0d] p-6 text-center">
+        <div>
+          <p className="text-base font-bold text-white">{text.results.waitingTitle}</p>
+          <p className="mt-2 text-sm text-zinc-400">{text.results.waitingHelp}</p>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="h-[72vh] overflow-hidden rounded-lg border border-white/10 bg-[#0b0d0d]">

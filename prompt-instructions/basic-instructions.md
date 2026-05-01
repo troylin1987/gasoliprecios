@@ -166,6 +166,9 @@ Campos de precio:
 - En desarrollo local con Vite se puede usar un proxy local `/api/precios-carburantes/estaciones-terrestres` para consultar la API sin CORS en el navegador.
 - La muestra completa debe mantenerse en `sampledata/sampledata.json`; para uso web local se puede copiar a `public/sampledata.json`.
 - Si la aplicacion permanece abierta y se alcanza el intervalo de refresco previsto, debe refrescar automaticamente los datos y recalcular resultados.
+- Al entrar en la web no deben mostrarse resultados ni ejecutarse una busqueda por defecto; la busqueda inicial se activa al pulsar `Usar mi ubicacion`.
+- Cada build debe generar automaticamente un numero de version visible en el footer: `GASOLIPRECIOS - Version ...`.
+- Los assets deben publicarse con hash de contenido y la app debe usar busting de version para datos estaticos para reducir cache obsoleta tras deploys.
 - La analitica debe estar preparada para Google Analytics usando `VITE_GA_MEASUREMENT_ID`.
 - Eventos recomendados: carga de datos, busqueda, permiso de ubicacion concedido/denegado, apertura de Google Maps, cambio de vista y filtros relevantes.
 - Google Analytics no debe cargarse sin consentimiento previo del usuario.
@@ -187,6 +190,7 @@ Campos de precio:
 - Preparar imagen social `og-image`.
 - Mantener contenido semantico con encabezados claros y textos descriptivos.
 - Priorizar rendimiento, accesibilidad, responsive y estabilidad visual.
+- Optimizar title, description, keywords, OG y JSON-LD para terminos como `gasolineras cercanas`, `gasolina barata`, `gasolineras con precios bajos`, `gasolineras low cost`, `precio gasolina barato`, `diesel barato` y busquedas locales relacionadas.
 
 ## Contenido especifico
 

@@ -2,7 +2,7 @@ export const API_URL =
   'https://sedeaplicaciones.minetur.gob.es/ServiciosRESTCarburantes/PreciosCarburantes/EstacionesTerrestres/';
 
 export const DEV_API_PATH = '/api/precios-carburantes/estaciones-terrestres';
-export const STATIC_DATA_PATH = `${import.meta.env.BASE_URL}sampledata.json`;
+export const STATIC_DATA_PATH = `${import.meta.env.BASE_URL}sampledata.json?v=${import.meta.env.VITE_APP_VERSION || Date.now()}`;
 export const CACHE_KEY = 'gasoliprecios:fuel-data:v1';
 export const CACHE_TTL_MS = 30 * 60 * 1000;
 

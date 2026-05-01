@@ -43,6 +43,8 @@
       "title": "Resultados",
       "stations": "estaciones",
       "oneStation": "estación",
+      "waitingTitle": "Pulsa “Usar mi ubicación” para empezar",
+      "waitingHelp": "No mostramos resultados hasta calcular tu posición. Así verás gasolineras realmente cercanas y distancias útiles.",
       "emptyTitle": "No hay estaciones con esos criterios.",
       "emptyHelp": "Prueba a ampliar zona, quitar el filtro de abiertas o cambiar combustible.",
       "location": "Localización",
@@ -94,6 +96,7 @@
     },
     "footer": {
       "brand": "Gasoliprecios",
+      "version": "Versión",
       "copyright": "Todos los derechos reservados.",
       "privacy": "Ubicación usada sólo en el navegador. Analítica opcional con consentimiento."
     },
@@ -173,6 +176,8 @@
       "title": "Results",
       "stations": "stations",
       "oneStation": "station",
+      "waitingTitle": "Tap “Use my location” to start",
+      "waitingHelp": "We do not show results until your position is calculated, so distances and nearby stations are useful.",
       "emptyTitle": "No stations match those criteria.",
       "emptyHelp": "Try widening the area, disabling open now, or changing fuel type.",
       "location": "Location",
@@ -224,6 +229,7 @@
     },
     "footer": {
       "brand": "Gasoliprecios",
+      "version": "Version",
       "copyright": "All rights reserved.",
       "privacy": "Location used only in the browser. Optional analytics with consent."
     },

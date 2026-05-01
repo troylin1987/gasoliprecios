@@ -11,6 +11,7 @@ import { searchStations } from './lib/search';
 import { initAnalytics, trackEvent } from './lib/analytics';
 import { getCopy, getInitialLanguage, storeLanguage } from './lib/copy';
 import { CACHE_TTL_MS } from './lib/constants';
+import { APP_VERSION } from './generated/version';
 
 const initialFilters = {
   query: '',
@@ -27,6 +28,7 @@ export default function App() {
   const [error, setError] = useState(null);
   const [filters, setFilters] = useState(initialFilters);
   const [userLocation, setUserLocation] = useState(null);
+  const [hasSearched, setHasSearched] = useState(false);
   const [locationStatus, setLocationStatus] = useState('idle');
   const [viewMode, setViewMode] = useState('list');
   const [currentSection, setCurrentSection] = useState('search');
@@ -75,6 +77,7 @@ export default function App() {
   };
 
   useEffect(() => {
+    if (!hasSearched) return undefined;
     const timeout = setTimeout(() => {
       trackEvent('search', {
         has_query: Boolean(filters.query),
@@ -87,12 +90,12 @@ export default function App() {
       });
     }, 500);
     return () => clearTimeout(timeout);
-  }, [filters]);
+  }, [filters, hasSearched]);
 
   const results = useMemo(() => {
-    if (!data) return [];
+    if (!data || !hasSearched || !userLocation) return [];
     return searchStations(data.stations, filters, userLocation);
-  }, [data, filters, userLocation]);
+  }, [data, filters, hasSearched, userLocation]);
 
   const requestLocation = () => {
     if (!navigator.geolocation) {
@@ -108,6 +111,7 @@ export default function App() {
           lng: position.coords.longitude,
         };
         setUserLocation(nextLocation);
+        setHasSearched(true);
         setLocationStatus('ready');
         trackEvent('location_allowed');
       },
@@ -207,18 +211,20 @@ export default function App() {
               <div>
                 <p className="text-xs font-bold text-aqua">{text.results.title}</p>
                 <h2 className="font-display text-3xl leading-none tracking-normal text-white">
-                  {results.length
-                    ? `${results.length} ${results.length === 1 ? text.results.oneStation : text.results.stations}`
-                    : text.results.emptyTitle}
+                  {hasSearched
+                    ? results.length
+                      ? `${results.length} ${results.length === 1 ? text.results.oneStation : text.results.stations}`
+                      : text.results.emptyTitle
+                    : text.results.waitingTitle}
                 </h2>
               </div>
               <ViewToggle viewMode={viewMode} setViewMode={changeViewMode} text={text} />
             </div>
 
             {viewMode === 'list' ? (
-              <ResultsList results={results} selectedFuel={filters.fuel} text={text} />
+              <ResultsList results={results} selectedFuel={filters.fuel} text={text} hasSearched={hasSearched} />
             ) : (
-              <MapView results={results} userLocation={userLocation} selectedFuel={filters.fuel} text={text} />
+              <MapView results={results} userLocation={userLocation} selectedFuel={filters.fuel} text={text} hasSearched={hasSearched} />
             )}
           </section>
         </main>
@@ -252,7 +258,9 @@ function PageShell({
       {children}
       <footer className="mt-8 border-t border-white/10 bg-zinc-950 px-4 py-5 text-xs text-zinc-500">
         <div className="mx-auto flex max-w-7xl flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
-          <p className="font-display text-2xl tracking-normal text-white">{text.footer.brand}</p>
+          <p className="font-display text-2xl tracking-normal text-white">
+            {text.footer.brand} - {text.footer.version} {APP_VERSION}
+          </p>
           <p className="text-right">
             © {year} {text.app.name}. {text.footer.copyright}
             <span className="block text-zinc-600">{text.footer.privacy}</span>
