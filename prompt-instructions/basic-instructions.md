@@ -176,11 +176,12 @@ Campos de precio:
 - Google Analytics no debe cargarse sin consentimiento previo del usuario.
 - Debe existir aviso de privacidad/analitica con aceptar y rechazar.
 - La ubicacion del usuario se usa solo en memoria del navegador para calcular distancias; no debe guardarse ni enviarse a servidores propios.
-- Todos los textos visibles de titulos, labels, botones, mensajes y copy deben vivir en un fichero configurable bilingue.
+- Todos los textos visibles de titulos, labels, botones, mensajes y copy deben vivir en un fichero configurable multidioma.
 - El fichero actual de textos es `src/content/copy.json`.
 - La aplicacion debe permitir alternar idioma desde el menu, mostrando bandera e ISO de 3 letras.
 - El idioma por defecto es castellano.
 - Idiomas soportados: castellano (`SPA`), ingles (`ENG`), catalan (`CAT`), gallego (`GLG`), euskera (`EUS`), frances (`FRA`), italiano (`ITA`), aleman (`DEU`), chino (`ZHO`), japones (`JPN`), ruso (`RUS`) y polaco (`POL`).
+- Todos los textos visibles y etiquetas accesibles deben estar traducidos en todos los idiomas soportados, sin depender de fallback a castellano salvo para la marca `GASOLIPRECIOS`.
 
 ## Requisitos SEO
 

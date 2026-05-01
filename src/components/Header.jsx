@@ -43,7 +43,7 @@ export function Header({ updatedAt, currentSection, onSectionChange, language, s
           <button className={navClass(currentSection === 'about')} onClick={() => goTo('about')}>
             {text.navigation.about}
           </button>
-          <LanguageSelect language={language} setLanguage={setLanguage} />
+          <LanguageSelect language={language} setLanguage={setLanguage} label={text.navigation.language} />
         </nav>
 
         <div className="flex shrink-0 items-center gap-2">
@@ -123,13 +123,13 @@ function mobileNavClass(active) {
   ].join(' ');
 }
 
-function LanguageSelect({ language, setLanguage }) {
+function LanguageSelect({ language, setLanguage, label }) {
   return (
     <select
       className="rounded-lg border border-white/10 bg-black px-2 py-2 text-xs font-black uppercase text-zinc-100 outline-none transition focus:border-aqua focus:ring-2 focus:ring-aqua/20"
       value={language}
       onChange={(event) => setLanguage(event.target.value)}
-      aria-label="Language"
+      aria-label={label}
     >
       {LANGUAGE_OPTIONS.map((option) => (
         <option value={option.id} key={option.id}>
