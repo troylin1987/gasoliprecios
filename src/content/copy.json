@@ -26,7 +26,7 @@
       "updateLocation": "Actualizar ubicación",
       "loadingLocation": "Obteniendo ubicación...",
       "locationError": "No hemos podido acceder a tu ubicación. Puedes seguir filtrando por zona.",
-      "queryLabel": "Buscar",
+      "queryLabel": "Texto",
       "queryPlaceholder": "Rótulo, dirección, localidad...",
       "ccaa": "Comunidad autónoma",
       "province": "Provincia",
@@ -35,9 +35,10 @@
       "allFuel": "Todos",
       "fuel": "Combustible",
       "openNow": "Solo abiertas ahora",
-      "sort": "Orden",
+      "sort": "Ordenar por",
       "byDistance": "Cercanía",
-      "byPrice": "Precio"
+      "byPrice": "Precio",
+      "searchButton": "Buscar"
     },
     "results": {
       "title": "Resultados",
@@ -101,9 +102,9 @@
       "privacy": "Ubicación usada sólo en el navegador. Analítica opcional con consentimiento."
     },
     "consent": {
-      "title": "Privacidad y analítica",
-      "body": "Usamos la ubicación sólo para calcular distancias en tu navegador. No la guardamos. Google Analytics sólo se cargará si aceptas ayudarnos a medir uso y búsquedas.",
-      "accept": "Aceptar analítica",
+      "title": "Privacidad",
+      "body": "Tu ubicación sólo se usa para calcular distancias en tu navegador. Nunca la guardamos. Sí se toman datos del uso de la aplicación para mejorarla con fines estadísticos. Pulsa aceptar para continuar.",
+      "accept": "Aceptar",
       "reject": "Rechazar"
     },
     "fuels": {
@@ -159,7 +160,7 @@
       "updateLocation": "Update location",
       "loadingLocation": "Getting location...",
       "locationError": "We could not access your location. You can still filter by area.",
-      "queryLabel": "Search",
+      "queryLabel": "Text",
       "queryPlaceholder": "Brand, address, town...",
       "ccaa": "Region",
       "province": "Province",
@@ -168,9 +169,10 @@
       "allFuel": "All",
       "fuel": "Fuel",
       "openNow": "Open now only",
-      "sort": "Sort",
+      "sort": "Sort by",
       "byDistance": "Distance",
-      "byPrice": "Price"
+      "byPrice": "Price",
+      "searchButton": "Search"
     },
     "results": {
       "title": "Results",
@@ -234,9 +236,9 @@
       "privacy": "Location used only in the browser. Optional analytics with consent."
     },
     "consent": {
-      "title": "Privacy and analytics",
-      "body": "We use location only to calculate distances in your browser. We do not store it. Google Analytics will only load if you agree to help us measure usage and searches.",
-      "accept": "Accept analytics",
+      "title": "Privacy",
+      "body": "Your location is only used to calculate distances in your browser. We never store it. App usage data is collected to improve it for statistical purposes. Tap accept to continue.",
+      "accept": "Accept",
       "reject": "Reject"
     },
     "fuels": {
@@ -269,7 +271,7 @@
     "_meta": {
       "name": "Català",
       "iso3": "CAT",
-      "flag": "🇪🇸"
+      "flag": "�"
     },
     "app": {
       "tagline": "Cercador de benzina barata",
@@ -292,7 +294,7 @@
       "updateLocation": "Actualitzar ubicació",
       "loadingLocation": "Obtenint ubicació...",
       "locationError": "No hem pogut accedir a la teva ubicació. Pots continuar filtrant per zona.",
-      "queryLabel": "Cerca",
+      "queryLabel": "Text",
       "queryPlaceholder": "Marca, adreça, localitat...",
       "ccaa": "Comunitat autònoma",
       "province": "Província",
@@ -301,9 +303,10 @@
       "allFuel": "Tots",
       "fuel": "Carburant",
       "openNow": "Només obertes ara",
-      "sort": "Ordre",
+      "sort": "Ordenar per",
       "byDistance": "Proximitat",
-      "byPrice": "Preu"
+      "byPrice": "Preu",
+      "searchButton": "Cerca"
     },
     "results": {
       "title": "Resultats",
@@ -367,9 +370,9 @@
       "version": "Versió"
     },
     "consent": {
-      "title": "Privacitat i analítica",
-      "body": "Fem servir la ubicació només per calcular distàncies al teu navegador. No la desem. Google Analytics només es carregarà si ho acceptes.",
-      "accept": "Acceptar analítica",
+      "title": "Privacitat",
+      "body": "La teva ubicació només s’utilitza per calcular distàncies al teu navegador. Mai no la guardem. Es prenen dades d’ús de l’aplicació per millorar-la amb finalitats estadístiques. Prem acceptar per continuar.",
+      "accept": "Acceptar",
       "reject": "Rebutjar"
     },
     "fuels": {
@@ -402,7 +405,7 @@
     "_meta": {
       "name": "Galego",
       "iso3": "GLG",
-      "flag": "🇪🇸"
+      "flag": "�"
     },
     "app": {
       "tagline": "Buscador de gasolina barata",
@@ -425,7 +428,7 @@
       "updateLocation": "Actualizar localización",
       "loadingLocation": "Obtendo localización...",
       "locationError": "Non puidemos acceder á túa localización. Podes seguir filtrando por zona.",
-      "queryLabel": "Buscar",
+      "queryLabel": "Texto",
       "queryPlaceholder": "Rótulo, enderezo, localidade...",
       "ccaa": "Comunidade autónoma",
       "province": "Provincia",
@@ -434,9 +437,10 @@
       "allFuel": "Todos",
       "fuel": "Combustible",
       "openNow": "Só abertas agora",
-      "sort": "Orde",
+      "sort": "Ordenar por",
       "byDistance": "Proximidade",
-      "byPrice": "Prezo"
+      "byPrice": "Prezo",
+      "searchButton": "Buscar"
     },
     "results": {
       "title": "Resultados",
@@ -500,9 +504,9 @@
       "version": "Versión"
     },
     "consent": {
-      "title": "Privacidade e analítica",
-      "body": "Usamos a localización só para calcular distancias no teu navegador. Non a gardamos. Google Analytics só se cargará se aceptas.",
-      "accept": "Aceptar analítica",
+      "title": "Privacidade",
+      "body": "A túa ubicación só se usa para calcular distancias no teu navegador. Nunca a gardamos. Tómanse datos do uso da aplicación para mellorala con fins estatísticos. Preme aceptar para continuar.",
+      "accept": "Aceptar",
       "reject": "Rexeitar"
     },
     "fuels": {
@@ -535,7 +539,7 @@
     "_meta": {
       "name": "Euskara",
       "iso3": "EUS",
-      "flag": "🇪🇸"
+      "flag": "�"
     },
     "app": {
       "tagline": "Gasolina merkea bilatzeko tresna",
@@ -558,7 +562,7 @@
       "updateLocation": "Eguneratu kokapena",
       "loadingLocation": "Kokapena lortzen...",
       "locationError": "Ezin izan dugu zure kokapena eskuratu. Eremuaren arabera iragazten jarrai dezakezu.",
-      "queryLabel": "Bilatu",
+      "queryLabel": "Testua",
       "queryPlaceholder": "Izena, helbidea, herria...",
       "ccaa": "Autonomia erkidegoa",
       "province": "Probintzia",
@@ -567,9 +571,10 @@
       "allFuel": "Guztiak",
       "fuel": "Erregaia",
       "openNow": "Orain irekita bakarrik",
-      "sort": "Ordena",
+      "sort": "Ordenatu arabera",
       "byDistance": "Hurbiltasuna",
-      "byPrice": "Prezioa"
+      "byPrice": "Prezioa",
+      "searchButton": "Bilatu"
     },
     "results": {
       "title": "Emaitzak",
@@ -633,9 +638,9 @@
       "version": "Bertsioa"
     },
     "consent": {
-      "title": "Pribatutasuna eta analitika",
-      "body": "Kokapena zure nabigatzailean distantziak kalkulatzeko bakarrik erabiltzen dugu. Ez dugu gordetzen. Google Analytics onartzen baduzu bakarrik kargatuko da.",
-      "accept": "Onartu analitika",
+      "title": "Pribatutasuna",
+      "body": "Zure kokapena zure nabigatzailean bakarrik erabiltzen da distantziak kalkulatzeko. Inola ere ez dugu gordetzen. Aplikazioaren erabilera-datuak biltzen dira hobetzeko, helburu estatistikoetarako. Sakatu onartu jarraitzeko.",
+      "accept": "Onartu",
       "reject": "Ukatu"
     },
     "fuels": {
@@ -691,7 +696,7 @@
       "updateLocation": "Mettre à jour la position",
       "loadingLocation": "Obtention de la position...",
       "locationError": "Impossible d'accéder à votre position. Vous pouvez toujours filtrer par zone.",
-      "queryLabel": "Rechercher",
+      "queryLabel": "Texte",
       "queryPlaceholder": "Enseigne, adresse, ville...",
       "ccaa": "Région",
       "province": "Province",
@@ -700,9 +705,10 @@
       "allFuel": "Tous",
       "fuel": "Carburant",
       "openNow": "Ouvertes maintenant",
-      "sort": "Tri",
+      "sort": "Trier par",
       "byDistance": "Proximité",
-      "byPrice": "Prix"
+      "byPrice": "Prix",
+      "searchButton": "Rechercher"
     },
     "results": {
       "title": "Résultats",
@@ -766,9 +772,9 @@
       "version": "Version"
     },
     "consent": {
-      "title": "Confidentialité et analyse",
-      "body": "Nous utilisons votre position uniquement pour calculer les distances dans votre navigateur. Elle n'est pas enregistrée. Google Analytics ne se charge que si vous acceptez.",
-      "accept": "Accepter l'analyse",
+      "title": "Confidentialité",
+      "body": "Votre position est uniquement utilisée pour calculer les distances dans votre navigateur. Nous ne la stockons jamais. Les données d’utilisation de l’application sont recueillies pour l’améliorer à des fins statistiques. Appuyez sur accepter pour continuer.",
+      "accept": "Accepter",
       "reject": "Refuser"
     },
     "fuels": {
@@ -824,7 +830,7 @@
       "updateLocation": "Aggiorna posizione",
       "loadingLocation": "Recupero posizione...",
       "locationError": "Non possiamo accedere alla tua posizione. Puoi continuare a filtrare per zona.",
-      "queryLabel": "Cerca",
+      "queryLabel": "Testo",
       "queryPlaceholder": "Marchio, indirizzo, località...",
       "ccaa": "Regione",
       "province": "Provincia",
@@ -833,9 +839,10 @@
       "allFuel": "Tutti",
       "fuel": "Carburante",
       "openNow": "Solo aperte ora",
-      "sort": "Ordina",
+      "sort": "Ordina per",
       "byDistance": "Vicinanza",
-      "byPrice": "Prezzo"
+      "byPrice": "Prezzo",
+      "searchButton": "Cerca"
     },
     "results": {
       "title": "Risultati",
@@ -899,9 +906,9 @@
       "version": "Versione"
     },
     "consent": {
-      "title": "Privacy e analisi",
-      "body": "Usiamo la posizione solo per calcolare distanze nel tuo browser. Non la salviamo. Google Analytics si carica solo se accetti.",
-      "accept": "Accetta analisi",
+      "title": "Privacy",
+      "body": "La tua posizione viene utilizzata solo per calcolare le distanze nel tuo browser. Non la memorizziamo mai. I dati sull’uso dell’app vengono raccolti per migliorarla a fini statistici. Premi accetta per continuare.",
+      "accept": "Accetta",
       "reject": "Rifiuta"
     },
     "fuels": {
@@ -957,7 +964,7 @@
       "updateLocation": "Standort aktualisieren",
       "loadingLocation": "Standort wird ermittelt...",
       "locationError": "Wir konnten nicht auf deinen Standort zugreifen. Du kannst weiter nach Gebiet filtern.",
-      "queryLabel": "Suchen",
+      "queryLabel": "Text",
       "queryPlaceholder": "Marke, Adresse, Ort...",
       "ccaa": "Region",
       "province": "Provinz",
@@ -966,9 +973,10 @@
       "allFuel": "Alle",
       "fuel": "Kraftstoff",
       "openNow": "Nur jetzt geöffnet",
-      "sort": "Sortierung",
+      "sort": "Sortieren nach",
       "byDistance": "Nähe",
-      "byPrice": "Preis"
+      "byPrice": "Preis",
+      "searchButton": "Suchen"
     },
     "results": {
       "title": "Ergebnisse",
@@ -1032,9 +1040,9 @@
       "version": "Version"
     },
     "consent": {
-      "title": "Privatsphäre und Analyse",
-      "body": "Wir nutzen deinen Standort nur zur Entfernungsberechnung im Browser. Wir speichern ihn nicht. Google Analytics wird nur nach Zustimmung geladen.",
-      "accept": "Analyse akzeptieren",
+      "title": "Privatsphäre",
+      "body": "Dein Standort wird nur in deinem Browser verwendet, um Entfernungen zu berechnen. Wir speichern ihn niemals. Nutzungsdaten der App werden gesammelt, um sie zu statistischen Zwecken zu verbessern. Drücke Akzeptieren, um fortzufahren.",
+      "accept": "Akzeptieren",
       "reject": "Ablehnen"
     },
     "fuels": {
@@ -1090,7 +1098,7 @@
       "updateLocation": "更新位置",
       "loadingLocation": "正在获取位置...",
       "locationError": "无法访问你的位置。你仍可以按区域筛选。",
-      "queryLabel": "搜索",
+      "queryLabel": "文本",
       "queryPlaceholder": "品牌、地址、城镇...",
       "ccaa": "自治区",
       "province": "省",
@@ -1099,9 +1107,10 @@
       "allFuel": "全部",
       "fuel": "燃料",
       "openNow": "仅显示当前营业",
-      "sort": "排序",
+      "sort": "排序方式",
       "byDistance": "距离",
-      "byPrice": "价格"
+      "byPrice": "价格",
+      "searchButton": "搜索"
     },
     "results": {
       "title": "结果",
@@ -1165,9 +1174,9 @@
       "version": "版本"
     },
     "consent": {
-      "title": "隐私与分析",
-      "body": "我们只在你的浏览器中使用位置来计算距离，不会保存。只有在你同意后才会加载 Google Analytics。",
-      "accept": "接受分析",
+      "title": "隐私",
+      "body": "你的位置信息仅在浏览器中用于计算距离。我们绝不保存它。应用使用数据会被收集以便用于统计目的改进应用。点击接受继续。",
+      "accept": "接受",
       "reject": "拒绝"
     },
     "fuels": {
@@ -1223,7 +1232,7 @@
       "updateLocation": "現在地を更新",
       "loadingLocation": "現在地を取得中...",
       "locationError": "現在地にアクセスできません。地域で絞り込みできます。",
-      "queryLabel": "検索",
+      "queryLabel": "テキスト",
       "queryPlaceholder": "ブランド、住所、町名...",
       "ccaa": "自治州",
       "province": "県",
@@ -1232,9 +1241,10 @@
       "allFuel": "すべて",
       "fuel": "燃料",
       "openNow": "営業中のみ",
-      "sort": "並び順",
+      "sort": "並び替え",
       "byDistance": "近い順",
-      "byPrice": "価格"
+      "byPrice": "価格",
+      "searchButton": "検索"
     },
     "results": {
       "title": "結果",
@@ -1298,9 +1308,9 @@
       "version": "バージョン"
     },
     "consent": {
-      "title": "プライバシーと分析",
-      "body": "位置情報はブラウザ内で距離計算にのみ使用し、保存しません。Google Analytics は同意した場合のみ読み込まれます。",
-      "accept": "分析を許可",
+      "title": "プライバシー",
+      "body": "あなたの位置情報はブラウザ内で距離を計算するためだけに使用されます。決して保存しません。アプリの利用データは統計目的で改善のために収集されます。続行するには「承諾」を押してください。",
+      "accept": "承諾",
       "reject": "拒否"
     },
     "fuels": {
@@ -1356,7 +1366,7 @@
       "updateLocation": "Обновить местоположение",
       "loadingLocation": "Получаем местоположение...",
       "locationError": "Не удалось получить местоположение. Можно продолжить фильтрацию по зоне.",
-      "queryLabel": "Поиск",
+      "queryLabel": "Текст",
       "queryPlaceholder": "Бренд, адрес, город...",
       "ccaa": "Регион",
       "province": "Провинция",
@@ -1365,9 +1375,10 @@
       "allFuel": "Все",
       "fuel": "Топливо",
       "openNow": "Только открытые сейчас",
-      "sort": "Сортировка",
+      "sort": "Сортировать по",
       "byDistance": "Близость",
-      "byPrice": "Цена"
+      "byPrice": "Цена",
+      "searchButton": "Поиск"
     },
     "results": {
       "title": "Результаты",
@@ -1431,9 +1442,9 @@
       "version": "Версия"
     },
     "consent": {
-      "title": "Приватность и аналитика",
-      "body": "Мы используем местоположение только для расчета расстояний в браузере и не сохраняем его. Google Analytics загружается только после согласия.",
-      "accept": "Принять аналитику",
+      "title": "Конфиденциальность",
+      "body": "Ваше местоположение используется только для расчета расстояний в браузере. Мы никогда его не сохраняем. Сбор данных об использовании приложения проводится для улучшения его в статистических целях. Нажмите принять, чтобы продолжить.",
+      "accept": "Принять",
       "reject": "Отклонить"
     },
     "fuels": {
@@ -1489,7 +1500,7 @@
       "updateLocation": "Odśwież lokalizację",
       "loadingLocation": "Pobieranie lokalizacji...",
       "locationError": "Nie udało się uzyskać lokalizacji. Nadal możesz filtrować według obszaru.",
-      "queryLabel": "Szukaj",
+      "queryLabel": "Tekst",
       "queryPlaceholder": "Marka, adres, miejscowość...",
       "ccaa": "Region",
       "province": "Prowincja",
@@ -1498,9 +1509,10 @@
       "allFuel": "Wszystkie",
       "fuel": "Paliwo",
       "openNow": "Tylko teraz otwarte",
-      "sort": "Sortuj",
+      "sort": "Sortuj wg",
       "byDistance": "Bliskość",
-      "byPrice": "Cena"
+      "byPrice": "Cena",
+      "searchButton": "Szukaj"
     },
     "results": {
       "title": "Wyniki",
@@ -1564,9 +1576,9 @@
       "version": "Wersja"
     },
     "consent": {
-      "title": "Prywatność i analityka",
-      "body": "Używamy lokalizacji tylko do obliczania odległości w przeglądarce. Nie zapisujemy jej. Google Analytics ładuje się tylko po akceptacji.",
-      "accept": "Akceptuj analitykę",
+      "title": "Prywatność",
+      "body": "Twoja lokalizacja jest używana wyłącznie do obliczania odległości w przeglądarce. Nigdy jej nie przechowujemy. Zbierane są dane o użytkowaniu aplikacji w celu jej ulepszania do celów statystycznych. Naciśnij akceptuj, aby kontynuować.",
+      "accept": "Akceptuj",
       "reject": "Odrzuć"
     },
     "fuels": {

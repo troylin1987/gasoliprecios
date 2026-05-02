@@ -1,11 +1,10 @@
-import { LocateFixed, Search, SlidersHorizontal } from 'lucide-react';
+import { LocateFixed, Search } from 'lucide-react';
 import { FUEL_FIELDS } from '../lib/constants';
 
 export function FiltersPanel({
   filters,
   setFilters,
   locations,
-  userLocation,
   locationStatus,
   requestLocation,
   text,
@@ -17,36 +16,16 @@ export function FiltersPanel({
 
   const update = (patch) => setFilters((current) => ({ ...current, ...patch }));
 
+  const searchButtonLabel = locationStatus === 'loading' ? text.filters.loadingLocation : text.filters.searchButton;
+
   return (
     <aside className="rounded-none border-y border-white/10 bg-[#0b0f0f]/95 p-3 shadow-glow lg:sticky lg:top-[4.75rem] lg:rounded-lg lg:border">
-      <div className="mb-2 flex items-center justify-between gap-3">
-        <div>
-          <p className="text-[10px] font-black uppercase text-ember">{text.filters.eyebrow}</p>
-          <h1 className="font-display text-3xl leading-none tracking-normal text-white">{text.filters.title}</h1>
-        </div>
-        <SlidersHorizontal className="h-5 w-5 text-aqua" aria-hidden="true" />
+      <div className="mb-4">
+        <p className="text-[10px] font-black uppercase text-ember">{text.filters.eyebrow}</p>
+        <h1 className="font-display text-3xl leading-none tracking-normal text-white">{text.filters.title}</h1>
       </div>
 
-      <button
-        className="mb-2 flex w-full items-center justify-center gap-2 rounded-lg bg-gradient-to-r from-ember to-aqua px-3 py-2 text-xs font-black text-black transition hover:-translate-y-0.5 focus:outline-none focus:ring-4 focus:ring-ember/30 disabled:cursor-wait disabled:opacity-70"
-        onClick={requestLocation}
-        disabled={locationStatus === 'loading'}
-      >
-        <LocateFixed size={16} />
-        {locationStatus === 'loading'
-          ? text.filters.loadingLocation
-          : userLocation
-            ? text.filters.updateLocation
-            : text.filters.useLocation}
-      </button>
-
-      {locationStatus === 'error' && (
-        <p className="mb-2 rounded-lg border border-red-400/30 bg-red-500/10 px-3 py-2 text-xs text-red-200">
-          {text.filters.locationError}
-        </p>
-      )}
-
-      <div className="space-y-2">
+      <div className="space-y-3">
         <label className="block">
           <span className="mb-1 flex items-center gap-2 text-xs font-bold text-zinc-200">
             <Search size={14} className="text-aqua" /> {text.filters.queryLabel}
@@ -102,8 +81,8 @@ export function FiltersPanel({
         </label>
 
         <div>
-          <span className="mb-1 block text-xs font-bold text-zinc-200">{text.filters.sort}</span>
-          <div className="grid grid-cols-2 rounded-lg border border-white/10 bg-black p-1">
+          <span className="mb-1 block text-xs font-bold uppercase text-zinc-200">{text.filters.sort}</span>
+          <div className="grid grid-cols-2 gap-2 rounded-lg border border-white/10 bg-black p-1">
             <button className={segmented(filters.sortBy === 'distance')} onClick={() => update({ sortBy: 'distance' })}>
               {text.filters.byDistance}
             </button>
@@ -112,6 +91,21 @@ export function FiltersPanel({
             </button>
           </div>
         </div>
+
+        <button
+          className="mt-2 flex w-full items-center justify-center gap-2 rounded-2xl bg-gradient-to-r from-ember to-aqua px-4 py-3 text-sm font-black text-black shadow-2xl shadow-ember/20 transition hover:-translate-y-0.5 focus:outline-none focus:ring-4 focus:ring-ember/30 disabled:cursor-wait disabled:opacity-70"
+          onClick={requestLocation}
+          disabled={locationStatus === 'loading'}
+        >
+          <LocateFixed size={18} />
+          {searchButtonLabel}
+        </button>
+
+        {locationStatus === 'error' && (
+          <p className="rounded-lg border border-red-400/30 bg-red-500/10 px-3 py-2 text-xs text-red-200">
+            {text.filters.locationError}
+          </p>
+        )}
       </div>
     </aside>
   );

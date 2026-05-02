@@ -48,9 +48,9 @@ export function MapView({ results, userLocation, selectedFuel, text, hasSearched
         )}
         {results.map((station) => (
           <Marker position={[station.lat, station.lng]} icon={stationIcon} key={station.id}>
-            <Popup>
-              <div className="min-w-60 space-y-1">
-                <strong className="font-display text-2xl tracking-normal">{station.brand}</strong>
+            <Popup className="station-popup">
+              <div className="min-w-60 space-y-2 text-sm">
+                <strong className="font-display text-xl tracking-normal">{station.brand}</strong>
                 <p>
                   <b>{text.results.location}:</b> {station.address}
                   <br />
@@ -64,10 +64,8 @@ export function MapView({ results, userLocation, selectedFuel, text, hasSearched
                     <b>{text.results.distance}:</b> {formatDistance(station.distance)}
                   </p>
                 )}
-                <div className="my-2">
-                  <p>
-                    <b>{text.results.availableFuel}:</b>
-                  </p>
+                <div className="space-y-1">
+                  <p className="font-semibold">{text.results.availableFuel}:</p>
                   {Object.entries(station.prices)
                     .filter(([field]) => !selectedFuel || field === selectedFuel)
                     .slice(0, selectedFuel ? 1 : 4)
@@ -78,6 +76,7 @@ export function MapView({ results, userLocation, selectedFuel, text, hasSearched
                     ))}
                 </div>
                 <a
+                  className="text-sm font-bold text-aqua"
                   href={mapsUrl(station)}
                   target="_blank"
                   rel="noreferrer"

@@ -1,20 +1,12 @@
-export function CookieNotice({ text, onAccept, onReject }) {
+export function CookieNotice({ text, onAccept }) {
   return (
-    <div className="fixed inset-x-3 bottom-3 z-50 mx-auto max-w-4xl rounded-lg border border-aqua/30 bg-black/95 p-3 shadow-glow backdrop-blur-xl sm:p-4">
-      <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-        <div>
-          <p className="font-display text-2xl tracking-normal text-white">{text.title}</p>
-          <p className="max-w-2xl text-xs leading-5 text-zinc-300 sm:text-sm">{text.body}</p>
-        </div>
-        <div className="flex shrink-0 gap-2">
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/95 p-4 text-white">
+      <div className="mx-auto w-full max-w-xl rounded-3xl border border-aqua/30 bg-[#0b0f0f] p-6 shadow-glow">
+        <div className="space-y-4">
+          <p className="font-display text-3xl tracking-normal text-white">{text.title}</p>
+          <p className="text-sm leading-6 text-zinc-300">{text.body}</p>
           <button
-            className="rounded-lg border border-white/15 px-3 py-2 text-xs font-bold text-zinc-200 transition hover:border-white/40 hover:text-white"
-            onClick={onReject}
-          >
-            {text.reject}
-          </button>
-          <button
-            className="rounded-lg bg-aqua px-3 py-2 text-xs font-black text-black transition hover:-translate-y-0.5 hover:bg-cyan-300"
+            className="w-full rounded-2xl bg-aqua px-5 py-3 text-sm font-black text-black transition hover:-translate-y-0.5 focus:outline-none focus:ring-4 focus:ring-ember/30"
             onClick={onAccept}
           >
             {text.accept}

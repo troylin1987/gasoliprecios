@@ -267,11 +267,10 @@ function PageShell({
           </p>
         </div>
       </footer>
-      {!analyticsConsent && (
+      {analyticsConsent !== 'accepted' && (
         <CookieNotice
           text={text.consent}
           onAccept={() => updateAnalyticsConsent('accepted')}
-          onReject={() => updateAnalyticsConsent('rejected')}
         />
       )}
     </div>
