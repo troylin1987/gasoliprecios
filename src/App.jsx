@@ -23,6 +23,24 @@ const initialFilters = {
   sortBy: 'distance',
 };
 
+function getInitialTheme() {
+  try {
+    const stored = localStorage.getItem('gasoliprecios:theme');
+    if (stored === 'light' || stored === 'dark') return stored;
+  } catch {
+    // Theme persistence failed; use default.
+  }
+  return 'dark';
+}
+
+function storeTheme(theme) {
+  try {
+    localStorage.setItem('gasoliprecios:theme', theme);
+  } catch {
+    // Theme storage failed; changes won't persist.
+  }
+}
+
 export default function App() {
   const [data, setData] = useState(null);
   const [error, setError] = useState(null);
@@ -33,6 +51,7 @@ export default function App() {
   const [viewMode, setViewMode] = useState('list');
   const [currentSection, setCurrentSection] = useState('search');
   const [language, setLanguageState] = useState(getInitialLanguage);
+  const [theme, setThemeState] = useState(getInitialTheme);
   const [analyticsConsent, setAnalyticsConsent] = useState(() => {
     try {
       return localStorage.getItem('gasoliprecios:analytics-consent') || '';
@@ -43,7 +62,8 @@ export default function App() {
   const text = getCopy(language);
 
   useEffect(() => {
-    document.documentElement.classList.add('dark');
+    document.documentElement.classList.toggle('dark', theme === 'dark');
+    document.documentElement.classList.toggle('light', theme === 'light');
     const refreshData = (force = false) => {
       loadFuelData({ force })
         .then((payload) => {
@@ -60,7 +80,7 @@ export default function App() {
     refreshData();
     const interval = setInterval(() => refreshData(true), CACHE_TTL_MS);
     return () => clearInterval(interval);
-  }, []);
+  }, [theme]);
 
   useEffect(() => {
     document.documentElement.lang = language;
@@ -74,6 +94,12 @@ export default function App() {
     setLanguageState(nextLanguage);
     storeLanguage(nextLanguage);
     trackEvent('language_change', { language: nextLanguage });
+  };
+
+  const setTheme = (nextTheme) => {
+    setThemeState(nextTheme);
+    storeTheme(nextTheme);
+    trackEvent('theme_change', { theme: nextTheme });
   };
 
   useEffect(() => {
@@ -149,6 +175,8 @@ export default function App() {
         onSectionChange={setCurrentSection}
         language={language}
         setLanguage={setLanguage}
+        theme={theme}
+        setTheme={setTheme}
         text={text}
         analyticsConsent={analyticsConsent}
         updateAnalyticsConsent={updateAnalyticsConsent}
@@ -167,6 +195,8 @@ export default function App() {
         onSectionChange={setCurrentSection}
         language={language}
         setLanguage={setLanguage}
+        theme={theme}
+        setTheme={setTheme}
         text={text}
         analyticsConsent={analyticsConsent}
         updateAnalyticsConsent={updateAnalyticsConsent}
@@ -183,6 +213,8 @@ export default function App() {
       onSectionChange={setCurrentSection}
       language={language}
       setLanguage={setLanguage}
+      theme={theme}
+      setTheme={setTheme}
       text={text}
       analyticsConsent={analyticsConsent}
       updateAnalyticsConsent={updateAnalyticsConsent}
@@ -240,30 +272,34 @@ function PageShell({
   onSectionChange,
   language,
   setLanguage,
+  theme,
+  setTheme,
   text,
   analyticsConsent,
   updateAnalyticsConsent,
 }) {
   const year = new Date().getFullYear();
   return (
-    <div className="min-h-screen bg-black text-white">
+    <div className={theme === 'light' ? 'min-h-screen bg-white text-gray-900' : 'min-h-screen bg-black text-white'}>
       <Header
         updatedAt={updatedAt}
         currentSection={currentSection}
         onSectionChange={onSectionChange}
         language={language}
         setLanguage={setLanguage}
+        theme={theme}
+        setTheme={setTheme}
         text={text}
       />
       {children}
-      <footer className="mt-8 border-t border-white/10 bg-zinc-950 px-4 py-5 text-xs text-zinc-500">
+      <footer className={theme === 'light' ? 'mt-8 border-t border-gray-200 bg-gray-50 px-4 py-5 text-xs text-gray-600' : 'mt-8 border-t border-white/10 bg-zinc-950 px-4 py-5 text-xs text-zinc-500'}>
         <div className="mx-auto flex max-w-7xl flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
-          <p className="font-display text-2xl tracking-normal text-white">
+          <p className="font-display text-2xl tracking-normal">
             {text.footer.brand} - {text.footer.version} {APP_VERSION}
           </p>
           <p className="text-right">
             © {year} {text.app.name}. {text.footer.copyright}
-            <span className="block text-zinc-600">{text.footer.privacy}</span>
+            <span className={theme === 'light' ? 'block text-gray-500' : 'block text-zinc-600'}>{text.footer.privacy}</span>
           </p>
         </div>
       </footer>

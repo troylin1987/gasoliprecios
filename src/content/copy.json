@@ -271,7 +271,7 @@
     "_meta": {
       "name": "Català",
       "iso3": "CAT",
-      "flag": "�"
+      "flag": "🗣️"
     },
     "app": {
       "tagline": "Cercador de benzina barata",
@@ -405,7 +405,7 @@
     "_meta": {
       "name": "Galego",
       "iso3": "GLG",
-      "flag": "�"
+      "flag": "🗣️"
     },
     "app": {
       "tagline": "Buscador de gasolina barata",
@@ -539,7 +539,7 @@
     "_meta": {
       "name": "Euskara",
       "iso3": "EUS",
-      "flag": "�"
+      "flag": "🗣️"
     },
     "app": {
       "tagline": "Gasolina merkea bilatzeko tresna",

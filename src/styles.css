@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 :root {
-  color-scheme: dark;
+  color-scheme: light dark;
   background: #000;
   font-family:
     "Bebas Neue", Impact, sans-serif;
@@ -14,13 +14,32 @@
   box-sizing: border-box;
 }
 
-body {
+/* Dark mode (default) */
+html.dark {
+  color-scheme: dark;
+  background: #000;
+}
+
+html.dark body {
   margin: 0;
   min-width: 320px;
   background:
     linear-gradient(135deg, rgba(255, 122, 24, 0.12), transparent 24rem),
     linear-gradient(225deg, rgba(18, 216, 192, 0.12), transparent 26rem),
     #000;
+}
+
+/* Light mode */
+html.light {
+  color-scheme: light;
+  background: #fafafa;
+}
+
+html.light body {
+  margin: 0;
+  min-width: 320px;
+  background: #f9f9f9;
+  color: #1f2937;
 }
 
 button,
@@ -30,46 +49,92 @@ select {
   -webkit-tap-highlight-color: transparent;
 }
 
-::selection {
+/* Dark selection */
+html.dark ::selection {
   background: #12d8c0;
   color: #000;
 }
 
-::-webkit-scrollbar {
+/* Light selection */
+html.light ::selection {
+  background: #fed7aa;
+  color: #7c2d12;
+}
+
+/* Dark scrollbar */
+html.dark ::-webkit-scrollbar {
   width: 10px;
 }
 
-::-webkit-scrollbar-track {
+html.dark ::-webkit-scrollbar-track {
   background: #09090b;
 }
 
-::-webkit-scrollbar-thumb {
+html.dark ::-webkit-scrollbar-thumb {
   background: #3f3f46;
   border-radius: 999px;
 }
 
-.leaflet-container {
+/* Light scrollbar */
+html.light ::-webkit-scrollbar {
+  width: 10px;
+}
+
+html.light ::-webkit-scrollbar-track {
+  background: #f3f4f6;
+}
+
+html.light ::-webkit-scrollbar-thumb {
+  background: #d1d5db;
+  border-radius: 999px;
+}
+
+/* Dark leaflet */
+html.dark .leaflet-container {
   background: #09090b;
   font: inherit;
 }
 
-.leaflet-popup-content-wrapper,
-.leaflet-popup-tip {
+html.dark .leaflet-popup-content-wrapper,
+html.dark .leaflet-popup-tip {
   background: #09090b;
   color: #fff;
   border: 1px solid rgba(255, 255, 255, 0.12);
 }
 
-.station-popup .leaflet-popup-content-wrapper {
+html.dark .station-popup .leaflet-popup-content-wrapper {
   font-size: 0.94rem;
 }
 
-.leaflet-popup-content a {
+html.dark .leaflet-popup-content a {
   color: #ff7a18;
   font-weight: 800;
 }
 
-.gas-marker {
+/* Light leaflet */
+html.light .leaflet-container {
+  background: #fafafa;
+  font: inherit;
+}
+
+html.light .leaflet-popup-content-wrapper,
+html.light .leaflet-popup-tip {
+  background: #fff;
+  color: #1f2937;
+  border: 1px solid rgba(0, 0, 0, 0.15);
+}
+
+html.light .station-popup .leaflet-popup-content-wrapper {
+  font-size: 0.94rem;
+}
+
+html.light .leaflet-popup-content a {
+  color: #d97706;
+  font-weight: 800;
+}
+
+/* Dark gas marker */
+html.dark .gas-marker {
   align-items: center;
   background: rgba(255, 122, 24, 0.18);
   border: 1px solid rgba(255, 122, 24, 0.7);
@@ -79,9 +144,29 @@ select {
   justify-content: center;
 }
 
-.gas-marker span {
+html.dark .gas-marker span {
   background: #ff7a18;
   border: 2px solid #000;
+  border-radius: 999px;
+  display: block;
+  height: 14px;
+  width: 14px;
+}
+
+/* Light gas marker */
+html.light .gas-marker {
+  align-items: center;
+  background: rgba(217, 119, 6, 0.15);
+  border: 1px solid rgba(217, 119, 6, 0.6);
+  border-radius: 999px;
+  box-shadow: 0 0 18px rgba(217, 119, 6, 0.25);
+  display: flex;
+  justify-content: center;
+}
+
+html.light .gas-marker span {
+  background: #d97706;
+  border: 2px solid #fafafa;
   border-radius: 999px;
   display: block;
   height: 14px;

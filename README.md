@@ -2,7 +2,7 @@
 
 **GASOLIPRECIOS** es una aplicación web responsive para consultar estaciones de servicio en España con precios oficiales de carburantes, filtros territoriales, búsqueda por texto, estado de apertura, ordenación por cercanía o precio y visualización en mapa.
 
-La aplicación está pensada con filosofía **mobile first**, tema oscuro permanente y una experiencia rápida tanto en escritorio como en móvil.
+La aplicación está pensada con filosofía **mobile first**, soporte de **tema oscuro y claro** con mejora de accesibilidad, y una experiencia rápida tanto en escritorio como en móvil.
 
 ## Funcionalidades
 
@@ -15,8 +15,10 @@ La aplicación está pensada con filosofía **mobile first**, tema oscuro perman
 - Vista de lista scrollable con las 20 estaciones más relevantes.
 - Vista de mapa con OpenStreetMap y marcadores interactivos.
 - Enlaces directos a Google Maps para llegar a cada estación.
-- Interfaz multidioma.
+- Interfaz multidioma con banderas regionales para idiomas co-oficiales.
+- **Selector de tema oscuro y claro** con adaptación de colores y accesibilidad mejorada para usuarios con dificultades visuales.
 - Google Analytics opcional, sólo con consentimiento del usuario.
+- Consentimiento de privacidad obligatorio en pantalla completa.
 
 ## Fuente de datos
 
@@ -34,17 +36,59 @@ La ubicación se usa únicamente en el navegador del usuario y sólo para calcul
 
 Google Analytics sólo se carga si el usuario acepta el aviso de analítica, y se utiliza únicamente con fines estadísticos para mejorar el sistema.
 
+El consentimiento de privacidad aparece en pantalla completa y es obligatorio para continuar usando la aplicación.
+
+## Accesibilidad
+
+La aplicación incluye un **selector de tema oscuro/claro** accesible desde el menú principal. El modo claro ofrece:
+
+- Paleta de colores clara con mayor contraste para mejorar legibilidad
+- Tipografía con tamaño base aumentado para personas con dificultades visuales
+- Colores menos saturados para reducir fatiga ocular
+- Espaciado y padding adaptado para mejor legibilidad
+- Soporte completo en versión responsive y mobile first
+
+Los dos temas mantienen la misma funcionalidad, estructura y branding, adaptando únicamente la paleta visual y el contraste según la preferencia del usuario.
+
+## Multiidioma
+
+La aplicación soporta 12 idiomas:
+
+- Español (SPA) 🇪🇸
+- Inglés (ENG) 🇬🇧
+- Catalán (CAT) 🗣️
+- Gallego (GLG) 🗣️
+- Euskera (EUS) 🗣️
+- Francés (FRA) 🇫🇷
+- Italiano (ITA) 🇮🇹
+- Alemán (DEU) 🇩🇪
+- Chino (ZHO) 🇨🇳
+- Japonés (JPN) 🇯🇵
+- Ruso (RUS) 🇷🇺
+- Polaco (POL) 🇵🇱
+
+La selección de idioma se persiste en el navegador y se puede cambiar desde el menú en cualquier momento.
+
 ## Arquitectura
 
 El proyecto está construido con:
 
 - React
 - Vite
-- Tailwind CSS
+- Tailwind CSS con soporte para clase `light` y `dark`
 - Flowbite
 - Leaflet y OpenStreetMap
 - GitHub Actions
 - GitHub Pages
+
+**Sistema de temas:**
+
+La aplicación implementa un sistema de temas que permite cambiar entre modo oscuro (por defecto) y modo claro.
+
+- Las preferencias de tema se guardan en `localStorage` como `gasoliprecios:theme`
+- Los estilos se adaptan mediante selectores CSS en `src/styles.css`
+- El estado del tema se gestiona en `App.jsx` y se pasa como prop a través de la jerarquía de componentes
+- El toggle de tema está disponible en el Header tanto en vista desktop como mobile
 
 Para evitar problemas de CORS y reducir llamadas innecesarias:
 
