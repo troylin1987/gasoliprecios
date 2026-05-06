@@ -12,7 +12,7 @@ const stationIcon = new L.DivIcon({
   iconAnchor: [14, 14],
 });
 
-export function MapView({ results, userLocation, selectedFuel, text, hasSearched }) {
+export function MapView({ results, userLocation, selectedFuel, text, hasSearched, theme }) {
   const center = userLocation || results[0] || { lat: 40.4168, lng: -3.7038 };
   const bounds = useMemo(() => {
     const points = results.map((station) => [station.lat, station.lng]);
@@ -22,17 +22,17 @@ export function MapView({ results, userLocation, selectedFuel, text, hasSearched
 
   if (!hasSearched) {
     return (
-      <div className="flex h-[72vh] items-center justify-center rounded-lg border border-aqua/20 bg-[#0b0d0d] p-6 text-center">
+      <div className={theme === 'light' ? 'flex h-[72vh] items-center justify-center rounded-lg border border-orange-300 bg-orange-50 p-6 text-center' : 'flex h-[72vh] items-center justify-center rounded-lg border border-aqua/20 bg-[#0b0d0d] p-6 text-center'}>
         <div>
-          <p className="text-base font-bold text-white">{text.results.waitingTitle}</p>
-          <p className="mt-2 text-sm text-zinc-400">{text.results.waitingHelp}</p>
+          <p className={theme === 'light' ? 'text-base font-bold text-gray-900' : 'text-base font-bold text-white'}>{text.results.waitingTitle}</p>
+          <p className={theme === 'light' ? 'mt-2 text-sm text-gray-700' : 'mt-2 text-sm text-zinc-400'}>{text.results.waitingHelp}</p>
         </div>
       </div>
     );
   }
 
   return (
-    <div className="h-[72vh] overflow-hidden rounded-lg border border-white/10 bg-[#0b0d0d]">
+    <div className={theme === 'light' ? 'h-[72vh] overflow-hidden rounded-lg border border-gray-300 bg-white' : 'h-[72vh] overflow-hidden rounded-lg border border-white/10 bg-[#0b0d0d]'}>
       <MapContainer center={[center.lat, center.lng]} zoom={userLocation ? 12 : 6} className="h-full w-full">
         <TileLayer
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
@@ -93,13 +93,13 @@ export function MapView({ results, userLocation, selectedFuel, text, hasSearched
   );
 }
 
-export function ViewToggle({ viewMode, setViewMode, text }) {
+export function ViewToggle({ viewMode, setViewMode, text, theme }) {
   return (
-    <div className="grid grid-cols-2 rounded-lg border border-white/10 bg-black p-1">
-      <button className={toggleClass(viewMode === 'list')} onClick={() => setViewMode('list')}>
+    <div className={theme === 'light' ? 'grid grid-cols-2 rounded-lg border border-gray-300 bg-white p-1' : 'grid grid-cols-2 rounded-lg border border-white/10 bg-black p-1'}>
+      <button className={toggleClass(viewMode === 'list', theme)} onClick={() => setViewMode('list')}>
         <Fuel size={15} /> {text.view.list}
       </button>
-      <button className={toggleClass(viewMode === 'map')} onClick={() => setViewMode('map')}>
+      <button className={toggleClass(viewMode === 'map', theme)} onClick={() => setViewMode('map')}>
         <Navigation size={15} /> {text.view.map}
       </button>
     </div>
@@ -116,9 +116,11 @@ function FitBounds({ bounds }) {
   return null;
 }
 
-function toggleClass(active) {
+function toggleClass(active, theme) {
   return [
     'flex items-center justify-center gap-2 rounded-md px-3 py-1.5 text-xs font-black transition',
-    active ? 'bg-ember text-black' : 'text-zinc-400 hover:text-white',
+    theme === 'light'
+      ? active ? 'bg-orange-500 text-white' : 'text-gray-600 hover:text-gray-900'
+      : active ? 'bg-ember text-black' : 'text-zinc-400 hover:text-white',
   ].join(' ');
 }

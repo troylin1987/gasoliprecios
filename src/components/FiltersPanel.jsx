@@ -8,6 +8,7 @@ export function FiltersPanel({
   locationStatus,
   requestLocation,
   text,
+  theme,
 }) {
   const selectedCcaa = locations.find((item) => item.id === filters.ccaaId);
   const provinces = selectedCcaa?.provinces || [];
@@ -18,20 +19,24 @@ export function FiltersPanel({
 
   const searchButtonLabel = locationStatus === 'loading' ? text.filters.loadingLocation : text.filters.searchButton;
 
+  const asideClasses = theme === 'light' 
+    ? 'rounded-none border-y border-gray-300 bg-gray-50 p-3 lg:sticky lg:top-[4.75rem] lg:rounded-lg lg:border' 
+    : 'rounded-none border-y border-white/10 bg-[#0b0f0f]/95 p-3 shadow-glow lg:sticky lg:top-[4.75rem] lg:rounded-lg lg:border';
+
   return (
-    <aside className="rounded-none border-y border-white/10 bg-[#0b0f0f]/95 p-3 shadow-glow lg:sticky lg:top-[4.75rem] lg:rounded-lg lg:border">
+    <aside className={asideClasses}>
       <div className="mb-4">
-        <p className="text-[10px] font-black uppercase text-ember">{text.filters.eyebrow}</p>
-        <h1 className="font-display text-3xl leading-none tracking-normal text-white">{text.filters.title}</h1>
+        <p className={theme === 'light' ? 'text-[10px] font-black uppercase text-orange-600' : 'text-[10px] font-black uppercase text-ember'}>{text.filters.eyebrow}</p>
+        <h1 className={theme === 'light' ? 'font-display text-3xl leading-none tracking-normal text-gray-900' : 'font-display text-3xl leading-none tracking-normal text-white'}>{text.filters.title}</h1>
       </div>
 
       <div className="space-y-3">
         <label className="block">
-          <span className="mb-1 flex items-center gap-2 text-xs font-bold text-zinc-200">
-            <Search size={14} className="text-aqua" /> {text.filters.queryLabel}
+          <span className={theme === 'light' ? 'mb-1 flex items-center gap-2 text-xs font-bold text-gray-700' : 'mb-1 flex items-center gap-2 text-xs font-bold text-zinc-200'}>
+            <Search size={14} className={theme === 'light' ? 'text-orange-600' : 'text-aqua'} /> {text.filters.queryLabel}
           </span>
           <input
-            className="w-full rounded-lg border border-white/10 bg-black px-3 py-2 text-sm text-white outline-none transition placeholder:text-zinc-600 focus:border-aqua focus:ring-2 focus:ring-aqua/20"
+            className={theme === 'light' ? 'w-full rounded-lg border border-gray-300 bg-white px-3 py-2 text-sm text-gray-900 outline-none transition placeholder:text-gray-500 focus:border-orange-500 focus:ring-2 focus:ring-orange-200' : 'w-full rounded-lg border border-white/10 bg-black px-3 py-2 text-sm text-white outline-none transition placeholder:text-zinc-600 focus:border-aqua focus:ring-2 focus:ring-aqua/20'}
             value={filters.query}
             onChange={(event) => update({ query: event.target.value })}
             placeholder={text.filters.queryPlaceholder}
@@ -44,6 +49,7 @@ export function FiltersPanel({
           onChange={(value) => update({ ccaaId: value, provinceId: '', municipalityId: '' })}
           options={locations}
           allLabel={text.filters.all}
+          theme={theme}
         />
         <Select
           label={text.filters.province}
@@ -52,6 +58,7 @@ export function FiltersPanel({
           options={provinces}
           disabled={!filters.ccaaId}
           allLabel={text.filters.all}
+          theme={theme}
         />
         <Select
           label={text.filters.municipality}
@@ -60,6 +67,7 @@ export function FiltersPanel({
           options={municipalities}
           disabled={!filters.provinceId}
           allLabel={text.filters.all}
+          theme={theme}
         />
 
         <Select
@@ -68,32 +76,33 @@ export function FiltersPanel({
           onChange={(value) => update({ fuel: value })}
           options={FUEL_FIELDS.map((field) => ({ id: field, name: text.fuels[field] }))}
           allLabel={text.filters.allFuel}
+          theme={theme}
         />
 
-        <label className="flex cursor-pointer items-center justify-between gap-3 rounded-lg border border-white/10 bg-gradient-to-r from-white/[0.06] to-aqua/[0.08] px-3 py-2 text-xs font-bold text-zinc-200 transition hover:border-aqua/50">
+        <label className={theme === 'light' ? 'flex cursor-pointer items-center justify-between gap-3 rounded-lg border border-gray-300 bg-orange-50 px-3 py-2 text-xs font-bold text-gray-700 transition hover:border-orange-400' : 'flex cursor-pointer items-center justify-between gap-3 rounded-lg border border-white/10 bg-gradient-to-r from-white/[0.06] to-aqua/[0.08] px-3 py-2 text-xs font-bold text-zinc-200 transition hover:border-aqua/50'}>
           <span>{text.filters.openNow}</span>
           <input
             type="checkbox"
-            className="h-4 w-4 rounded border-zinc-600 bg-black text-aqua focus:ring-aqua"
+            className={theme === 'light' ? 'h-4 w-4 rounded border-gray-400 bg-white text-orange-600 focus:ring-orange-400' : 'h-4 w-4 rounded border-zinc-600 bg-black text-aqua focus:ring-aqua'}
             checked={filters.openNow}
             onChange={(event) => update({ openNow: event.target.checked })}
           />
         </label>
 
         <div>
-          <span className="mb-1 block text-xs font-bold uppercase text-zinc-200">{text.filters.sort}</span>
-          <div className="grid grid-cols-2 gap-2 rounded-lg border border-white/10 bg-black p-1">
-            <button className={segmented(filters.sortBy === 'distance')} onClick={() => update({ sortBy: 'distance' })}>
+          <span className={theme === 'light' ? 'mb-1 block text-xs font-bold uppercase text-gray-700' : 'mb-1 block text-xs font-bold uppercase text-zinc-200'}>{text.filters.sort}</span>
+          <div className={theme === 'light' ? 'grid grid-cols-2 gap-2 rounded-lg border border-gray-300 bg-white p-1' : 'grid grid-cols-2 gap-2 rounded-lg border border-white/10 bg-black p-1'}>
+            <button className={segmented(filters.sortBy === 'distance', theme)} onClick={() => update({ sortBy: 'distance' })}>
               {text.filters.byDistance}
             </button>
-            <button className={segmented(filters.sortBy === 'price')} onClick={() => update({ sortBy: 'price' })}>
+            <button className={segmented(filters.sortBy === 'price', theme)} onClick={() => update({ sortBy: 'price' })}>
               {text.filters.byPrice}
             </button>
           </div>
         </div>
 
         <button
-          className="mt-2 flex w-full items-center justify-center gap-2 rounded-2xl bg-gradient-to-r from-ember to-aqua px-4 py-3 text-sm font-black text-black shadow-2xl shadow-ember/20 transition hover:-translate-y-0.5 focus:outline-none focus:ring-4 focus:ring-ember/30 disabled:cursor-wait disabled:opacity-70"
+          className={theme === 'light' ? 'mt-2 flex w-full items-center justify-center gap-2 rounded-2xl bg-gradient-to-r from-orange-500 to-orange-600 px-4 py-3 text-sm font-black text-white shadow-lg shadow-orange-500/30 transition hover:-translate-y-0.5 focus:outline-none focus:ring-4 focus:ring-orange-300 disabled:cursor-wait disabled:opacity-70' : 'mt-2 flex w-full items-center justify-center gap-2 rounded-2xl bg-gradient-to-r from-ember to-aqua px-4 py-3 text-sm font-black text-black shadow-2xl shadow-ember/20 transition hover:-translate-y-0.5 focus:outline-none focus:ring-4 focus:ring-ember/30 disabled:cursor-wait disabled:opacity-70'}
           onClick={requestLocation}
           disabled={locationStatus === 'loading'}
         >
@@ -102,7 +111,7 @@ export function FiltersPanel({
         </button>
 
         {locationStatus === 'error' && (
-          <p className="rounded-lg border border-red-400/30 bg-red-500/10 px-3 py-2 text-xs text-red-200">
+          <p className={theme === 'light' ? 'rounded-lg border border-red-300 bg-red-50 px-3 py-2 text-xs text-red-700' : 'rounded-lg border border-red-400/30 bg-red-500/10 px-3 py-2 text-xs text-red-200'}>
             {text.filters.locationError}
           </p>
         )}
@@ -111,12 +120,12 @@ export function FiltersPanel({
   );
 }
 
-function Select({ label, value, onChange, options, disabled, allLabel }) {
+function Select({ label, value, onChange, options, disabled, allLabel, theme }) {
   return (
     <label className="block">
-      <span className="mb-1 block text-xs font-bold text-zinc-200">{label}</span>
+      <span className={theme === 'light' ? 'mb-1 block text-xs font-bold text-gray-700' : 'mb-1 block text-xs font-bold text-zinc-200'}>{label}</span>
       <select
-        className="w-full rounded-lg border border-white/10 bg-black px-3 py-2 text-sm text-white outline-none transition focus:border-aqua focus:ring-2 focus:ring-aqua/20 disabled:cursor-not-allowed disabled:opacity-40"
+        className={theme === 'light' ? 'w-full rounded-lg border border-gray-300 bg-white px-3 py-2 text-sm text-gray-900 outline-none transition focus:border-orange-500 focus:ring-2 focus:ring-orange-200 disabled:cursor-not-allowed disabled:opacity-40' : 'w-full rounded-lg border border-white/10 bg-black px-3 py-2 text-sm text-white outline-none transition focus:border-aqua focus:ring-2 focus:ring-aqua/20 disabled:cursor-not-allowed disabled:opacity-40'}
         value={value}
         onChange={(event) => onChange(event.target.value)}
         disabled={disabled}
@@ -132,9 +141,11 @@ function Select({ label, value, onChange, options, disabled, allLabel }) {
   );
 }
 
-function segmented(active) {
+function segmented(active, theme) {
   return [
     'rounded-md px-2 py-1.5 text-xs font-black transition',
-    active ? 'bg-aqua text-black shadow-glow' : 'text-zinc-400 hover:text-white',
+    theme === 'light'
+      ? active ? 'bg-orange-500 text-white shadow-md' : 'text-gray-600 hover:text-gray-900'
+      : active ? 'bg-aqua text-black shadow-glow' : 'text-zinc-400 hover:text-white',
   ].join(' ');
 }

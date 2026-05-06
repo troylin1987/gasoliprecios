@@ -220,29 +220,29 @@ export default function App() {
       updateAnalyticsConsent={updateAnalyticsConsent}
     >
       {currentSection === 'about' ? (
-        <About data={data} text={text} />
+        <About data={data} text={text} theme={theme} />
       ) : (
         <main className="mx-auto grid max-w-7xl gap-4 py-3 lg:grid-cols-[330px_1fr] lg:px-6">
           <FiltersPanel
             filters={filters}
             setFilters={setFilters}
             locations={data.locations}
-            userLocation={userLocation}
             locationStatus={locationStatus}
             requestLocation={requestLocation}
             text={text}
+            theme={theme}
           />
-          <section className="mx-4 rounded-lg border border-white/10 bg-[#070b0b]/85 p-3 shadow-glow lg:mx-0">
+          <section className={theme === 'light' ? 'mx-4 rounded-lg border border-gray-300 bg-white p-3 lg:mx-0' : 'mx-4 rounded-lg border border-white/10 bg-[#070b0b]/85 p-3 shadow-glow lg:mx-0'}>
             {data.warning && (
-              <div className="mb-3 rounded-lg border border-amber-400/30 bg-amber-500/10 px-4 py-2 text-sm text-amber-100">
+              <div className={theme === 'light' ? 'mb-3 rounded-lg border border-orange-300 bg-orange-50 px-4 py-2 text-sm text-orange-700' : 'mb-3 rounded-lg border border-amber-400/30 bg-amber-500/10 px-4 py-2 text-sm text-amber-100'}>
                 {text.status.apiWarning}
               </div>
             )}
 
-            <div className="mb-3 flex flex-col gap-3 rounded-lg border border-white/10 bg-zinc-950 p-3 sm:flex-row sm:items-center sm:justify-between">
+            <div className={theme === 'light' ? 'mb-3 flex flex-col gap-3 rounded-lg border border-gray-300 bg-gray-50 p-3 sm:flex-row sm:items-center sm:justify-between' : 'mb-3 flex flex-col gap-3 rounded-lg border border-white/10 bg-zinc-950 p-3 sm:flex-row sm:items-center sm:justify-between'}>
               <div>
-                <p className="text-xs font-bold text-aqua">{text.results.title}</p>
-                <h2 className="font-display text-3xl leading-none tracking-normal text-white">
+                <p className={theme === 'light' ? 'text-xs font-bold text-orange-600' : 'text-xs font-bold text-aqua'}>{text.results.title}</p>
+                <h2 className={theme === 'light' ? 'font-display text-3xl leading-none tracking-normal text-gray-900' : 'font-display text-3xl leading-none tracking-normal text-white'}>
                   {hasSearched
                     ? results.length
                       ? `${results.length} ${results.length === 1 ? text.results.oneStation : text.results.stations}`
@@ -250,13 +250,13 @@ export default function App() {
                     : text.results.waitingTitle}
                 </h2>
               </div>
-              <ViewToggle viewMode={viewMode} setViewMode={changeViewMode} text={text} />
+              <ViewToggle viewMode={viewMode} setViewMode={changeViewMode} text={text} theme={theme} />
             </div>
 
             {viewMode === 'list' ? (
-              <ResultsList results={results} selectedFuel={filters.fuel} text={text} hasSearched={hasSearched} />
+              <ResultsList results={results} selectedFuel={filters.fuel} text={text} hasSearched={hasSearched} theme={theme} />
             ) : (
-              <MapView results={results} userLocation={userLocation} selectedFuel={filters.fuel} text={text} hasSearched={hasSearched} />
+              <MapView results={results} userLocation={userLocation} selectedFuel={filters.fuel} text={text} hasSearched={hasSearched} theme={theme} />
             )}
           </section>
         </main>
