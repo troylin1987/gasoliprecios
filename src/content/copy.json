@@ -99,7 +99,7 @@
       "brand": "Gasoliprecios",
       "version": "Versión",
       "copyright": "Todos los derechos reservados.",
-      "privacy": "Ubicación usada sólo en el navegador. Analítica opcional con consentimiento."
+      "privacy": "Ubicación usada sólo en el navegador. Puede haber errores."
     },
     "consent": {
       "title": "Privacidad",
@@ -233,7 +233,7 @@
       "brand": "Gasoliprecios",
       "version": "Version",
       "copyright": "All rights reserved.",
-      "privacy": "Location used only in the browser. Optional analytics with consent."
+      "privacy": "Location used only in the browser. There may be errors."
     },
     "consent": {
       "title": "Privacy",
@@ -365,7 +365,7 @@
     },
     "footer": {
       "copyright": "Tots els drets reservats.",
-      "privacy": "Ubicació usada només al navegador. Analítica opcional amb consentiment.",
+      "privacy": "Ubicació usada només al navegador. Pot haver-hi errors.",
       "brand": "Gasoliprecios",
       "version": "Versió"
     },
@@ -499,7 +499,7 @@
     },
     "footer": {
       "copyright": "Todos os dereitos reservados.",
-      "privacy": "Localización usada só no navegador. Analítica opcional con consentimento.",
+      "privacy": "Localización usada só no navegador. Pode haber erros.",
       "brand": "Gasoliprecios",
       "version": "Versión"
     },
@@ -633,7 +633,7 @@
     },
     "footer": {
       "copyright": "Eskubide guztiak erreserbatuta.",
-      "privacy": "Kokapena nabigatzailean bakarrik erabiltzen da. Analitika aukerakoa baimenarekin.",
+      "privacy": "Kokapena nabigatzailean bakarrik erabiltzen da. Akatsak egon daitezke.",
       "brand": "Gasoliprecios",
       "version": "Bertsioa"
     },
@@ -767,7 +767,7 @@
     },
     "footer": {
       "copyright": "Tous droits réservés.",
-      "privacy": "Position utilisée uniquement dans le navigateur. Analyse optionnelle avec consentement.",
+      "privacy": "Position utilisée uniquement dans le navigateur. Des erreurs peuvent exister.",
       "brand": "Gasoliprecios",
       "version": "Version"
     },
@@ -901,7 +901,7 @@
     },
     "footer": {
       "copyright": "Tutti i diritti riservati.",
-      "privacy": "Posizione usata solo nel browser. Analisi opzionale con consenso.",
+      "privacy": "Posizione usata solo nel browser. Potrebbero esserci errori.",
       "brand": "Gasoliprecios",
       "version": "Versione"
     },
@@ -1035,7 +1035,7 @@
     },
     "footer": {
       "copyright": "Alle Rechte vorbehalten.",
-      "privacy": "Standort nur im Browser genutzt. Optionale Analyse mit Einwilligung.",
+      "privacy": "Standort nur im Browser genutzt. Es kann Fehler geben.",
       "brand": "Gasoliprecios",
       "version": "Version"
     },
@@ -1169,7 +1169,7 @@
     },
     "footer": {
       "copyright": "版权所有。",
-      "privacy": "位置仅在浏览器中使用。分析功能需获得同意。",
+      "privacy": "位置仅在浏览器中使用。可能会有错误。",
       "brand": "Gasoliprecios",
       "version": "版本"
     },
@@ -1303,7 +1303,7 @@
     },
     "footer": {
       "copyright": "All rights reserved.",
-      "privacy": "位置情報はブラウザ内でのみ使用。分析は同意制です。",
+      "privacy": "位置情報はブラウザ内でのみ使用。誤りがある場合があります。",
       "brand": "Gasoliprecios",
       "version": "バージョン"
     },
@@ -1437,7 +1437,7 @@
     },
     "footer": {
       "copyright": "Все права защищены.",
-      "privacy": "Местоположение используется только в браузере. Аналитика по согласию.",
+      "privacy": "Местоположение используется только в браузере. Возможны ошибки.",
       "brand": "Gasoliprecios",
       "version": "Версия"
     },
@@ -1571,7 +1571,7 @@
     },
     "footer": {
       "copyright": "Wszelkie prawa zastrzeżone.",
-      "privacy": "Lokalizacja używana tylko w przeglądarce. Analityka opcjonalna za zgodą.",
+      "privacy": "Lokalizacja używana tylko w przeglądarce. Mogą występować błędy.",
       "brand": "Gasoliprecios",
       "version": "Wersja"
     },
