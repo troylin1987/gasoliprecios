@@ -8,7 +8,7 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: read
+  contents: write
   pages: write
   id-token: write
 
@@ -33,6 +33,18 @@ jobs:
         run: npm ci
       - name: Refresh official fuel data
         run: npm run update:data
+      - name: Persist refreshed sampledata
+        run: |
+          if git diff --quiet -- public/sampledata.json sampledata/sampledata.json; then
+            echo "No sampledata changes to commit"
+            exit 0
+          fi
+
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add public/sampledata.json sampledata/sampledata.json
+          git commit -m "chore(data): refresh sampledata [skip ci]"
+          git push
       - name: Build
         run: GITHUB_PAGES=true npm run build
         env:
