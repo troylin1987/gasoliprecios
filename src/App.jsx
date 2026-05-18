@@ -3,7 +3,7 @@ import { Header } from './components/Header';
 import { FiltersPanel } from './components/FiltersPanel';
 import { ResultsList } from './components/ResultsList';
 import { MapView, ViewToggle } from './components/MapView';
-import { LoadingScreen, ErrorBanner } from './components/Status';
+import { LoadingScreen, ErrorBanner, DataSourceWarningBar } from './components/Status';
 import { About } from './components/About';
 import { CookieNotice } from './components/CookieNotice';
 import { loadFuelData } from './lib/data';
@@ -171,6 +171,7 @@ export default function App() {
     return (
       <PageShell
         updatedAt={data?.updatedAt}
+        dataSourceWarning={data?.warning ? text.status.apiWarning : ''}
         currentSection={currentSection}
         onSectionChange={setCurrentSection}
         language={language}
@@ -191,6 +192,7 @@ export default function App() {
   if (!data) {
     return (
       <PageShell
+        dataSourceWarning=""
         currentSection={currentSection}
         onSectionChange={setCurrentSection}
         language={language}
@@ -209,6 +211,7 @@ export default function App() {
   return (
     <PageShell
       updatedAt={data.updatedAt}
+      dataSourceWarning={data.warning ? text.status.apiWarning : ''}
       currentSection={currentSection}
       onSectionChange={setCurrentSection}
       language={language}
@@ -233,12 +236,6 @@ export default function App() {
             theme={theme}
           />
           <section className={theme === 'light' ? 'mx-4 rounded-lg border border-gray-300 bg-white p-3 lg:mx-0' : 'mx-4 rounded-lg border border-white/10 bg-[#070b0b]/85 p-3 shadow-glow lg:mx-0'}>
-            {data.warning && (
-              <div className={theme === 'light' ? 'mb-3 rounded-lg border border-orange-300 bg-orange-50 px-4 py-2 text-sm text-orange-700' : 'mb-3 rounded-lg border border-amber-400/30 bg-amber-500/10 px-4 py-2 text-sm text-amber-100'}>
-                {text.status.apiWarning}
-              </div>
-            )}
-
             <div className={theme === 'light' ? 'mb-3 flex flex-col gap-3 rounded-lg border border-gray-300 bg-gray-50 p-3 sm:flex-row sm:items-center sm:justify-between' : 'mb-3 flex flex-col gap-3 rounded-lg border border-white/10 bg-zinc-950 p-3 sm:flex-row sm:items-center sm:justify-between'}>
               <div>
                 <p className={theme === 'light' ? 'text-xs font-bold text-orange-600' : 'text-xs font-bold text-aqua'}>{text.results.title}</p>
@@ -268,6 +265,7 @@ export default function App() {
 function PageShell({
   children,
   updatedAt,
+  dataSourceWarning,
   currentSection,
   onSectionChange,
   language,
@@ -291,6 +289,7 @@ function PageShell({
         setTheme={setTheme}
         text={text}
       />
+      <DataSourceWarningBar message={dataSourceWarning} theme={theme} />
       {children}
       <footer className={theme === 'light' ? 'mt-8 border-t border-gray-200 bg-gray-50 px-4 py-5 text-xs text-gray-600' : 'mt-8 border-t border-white/10 bg-zinc-950 px-4 py-5 text-xs text-zinc-500'}>
         <div className="mx-auto flex max-w-7xl flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
