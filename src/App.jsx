@@ -23,6 +23,8 @@ const initialFilters = {
   sortBy: 'distance',
 };
 
+const DATA_FRESHNESS_MAX_HOURS = 12;
+
 function getInitialTheme() {
   try {
     const stored = localStorage.getItem('gasoliprecios:theme');
@@ -60,6 +62,13 @@ export default function App() {
     }
   });
   const text = getCopy(language);
+
+  const isDataStale = data ? isDataOlderThanHours(data.updatedAt, DATA_FRESHNESS_MAX_HOURS) : false;
+  const dataWarningMessage = data?.warning
+    ? text.status.apiWarning
+    : isDataStale
+      ? text.status.staleDataWarning
+      : '';
 
   useEffect(() => {
     document.documentElement.classList.toggle('dark', theme === 'dark');
@@ -171,7 +180,7 @@ export default function App() {
     return (
       <PageShell
         updatedAt={data?.updatedAt}
-        dataSourceWarning={data?.warning ? text.status.apiWarning : ''}
+        dataSourceWarning={dataWarningMessage}
         currentSection={currentSection}
         onSectionChange={setCurrentSection}
         language={language}
@@ -211,7 +220,7 @@ export default function App() {
   return (
     <PageShell
       updatedAt={data.updatedAt}
-      dataSourceWarning={data.warning ? text.status.apiWarning : ''}
+      dataSourceWarning={dataWarningMessage}
       currentSection={currentSection}
       onSectionChange={setCurrentSection}
       language={language}
@@ -260,6 +269,40 @@ export default function App() {
       )}
     </PageShell>
   );
+}
+
+function isDataOlderThanHours(updatedAt, maxHours) {
+  const updatedAtDate = parseSpanishDateTime(updatedAt);
+  if (!updatedAtDate) return true;
+  return Date.now() - updatedAtDate.getTime() > maxHours * 60 * 60 * 1000;
+}
+
+function parseSpanishDateTime(value) {
+  if (typeof value !== 'string') return null;
+  const match = value.trim().match(/^(\d{1,2})\/(\d{1,2})\/(\d{4})\s+(\d{1,2}):(\d{2})(?::(\d{2}))?$/);
+  if (!match) return null;
+
+  const [, dayStr, monthStr, yearStr, hourStr, minuteStr, secondStr = '0'] = match;
+  const day = Number(dayStr);
+  const month = Number(monthStr);
+  const year = Number(yearStr);
+  const hour = Number(hourStr);
+  const minute = Number(minuteStr);
+  const second = Number(secondStr);
+
+  const date = new Date(year, month - 1, day, hour, minute, second);
+  if (
+    date.getFullYear() !== year ||
+    date.getMonth() !== month - 1 ||
+    date.getDate() !== day ||
+    date.getHours() !== hour ||
+    date.getMinutes() !== minute ||
+    date.getSeconds() !== second
+  ) {
+    return null;
+  }
+
+  return date;
 }
 
 function PageShell({

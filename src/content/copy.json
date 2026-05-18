@@ -66,6 +66,7 @@
       "loadingPrices": "Preparando precios actualizados...",
       "loadingHelp": "Estamos cargando y normalizando las estaciones disponibles.",
       "apiWarning": "La API no ha respondido ahora mismo. Estamos usando datos guardados para que puedas seguir buscando.",
+      "staleDataWarning": "No se han obtenido precios recientes en las últimas 12 horas. Puede que los importes mostrados no sean correctos.",
       "loadError": "No hemos podido cargar los precios. Inténtalo de nuevo en unos minutos."
     },
     "about": {
@@ -200,6 +201,7 @@
       "loadingPrices": "Preparing updated prices...",
       "loadingHelp": "Loading and normalizing available stations.",
       "apiWarning": "The API is not responding right now. We are using stored data so you can keep searching.",
+      "staleDataWarning": "No recent prices have been obtained in the last 12 hours. Displayed amounts may be inaccurate.",
       "loadError": "We could not load prices. Please try again in a few minutes."
     },
     "about": {
