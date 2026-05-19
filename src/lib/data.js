@@ -9,7 +9,7 @@ export async function loadFuelData({ force = false } = {}) {
   }
 
   try {
-    const response = await fetch(getPrimaryDataUrl(), { cache: 'no-store' });
+    const response = await fetch(getDataUrl(), { cache: 'no-store' });
     if (!response.ok) throw new Error(`API ${response.status}`);
     const payload = await response.json();
     writeCache(payload);
@@ -136,6 +136,6 @@ function byName(a, b) {
   return a.name.localeCompare(b.name, 'es');
 }
 
-function getPrimaryDataUrl() {
+function getDataUrl() {
   return import.meta.env.DEV ? DEV_API_PATH : API_URL;
 }
