@@ -80,11 +80,66 @@ try {
   console.warn('Using fallback data from public/sampledata.json');
 }
 
-const json = JSON.stringify(payload);
 await mkdir('public', { recursive: true });
 await mkdir('sampledata', { recursive: true });
-await writeFile('public/sampledata.json', json);
-await writeFile('sampledata/sampledata.json', json);
+const existingPayload = await readExistingPayload();
+const shouldPersist = !existingPayload || isNewerPayload(payload, existingPayload);
+
+if (shouldPersist) {
+  const json = JSON.stringify(payload);
+  await writeFile('public/sampledata.json', json);
+  await writeFile('sampledata/sampledata.json', json);
+} else {
+  payload = existingPayload;
+  console.warn('Incoming payload is not newer. Keeping existing sampledata snapshot.');
+}
 
 const source = usedFallback ? 'fallback cache' : 'official API';
-console.log(`Fuel data refreshed from ${source}: ${payload.Fecha}, ${payload.ListaEESSPrecio.length} stations`);
+const persisted = shouldPersist ? 'updated' : 'kept';
+console.log(`Fuel data ${persisted} from ${source}: ${payload.Fecha}, ${payload.ListaEESSPrecio.length} stations`);
+
+async function readExistingPayload() {
+  try {
+    const existing = await readFile('public/sampledata.json', 'utf8');
+    return JSON.parse(existing);
+  } catch {
+    return null;
+  }
+}
+
+function isNewerPayload(nextPayload, currentPayload) {
+  const nextDate = parseSpanishDateTime(nextPayload?.Fecha);
+  const currentDate = parseSpanishDateTime(currentPayload?.Fecha);
+
+  if (!nextDate) return false;
+  if (!currentDate) return true;
+  return nextDate.getTime() > currentDate.getTime();
+}
+
+function parseSpanishDateTime(value) {
+  if (typeof value !== 'string') return null;
+  const match = value.trim().match(/^(\d{1,2})\/(\d{1,2})\/(\d{4})\s+(\d{1,2}):(\d{2})(?::(\d{2}))?$/);
+  if (!match) return null;
+
+  const [, dayStr, monthStr, yearStr, hourStr, minuteStr, secondStr = '0'] = match;
+  const day = Number(dayStr);
+  const month = Number(monthStr);
+  const year = Number(yearStr);
+  const hour = Number(hourStr);
+  const minute = Number(minuteStr);
+  const second = Number(secondStr);
+
+  const date = new Date(year, month - 1, day, hour, minute, second);
+  if (
+    date.getFullYear() !== year ||
+    date.getMonth() !== month - 1 ||
+    date.getDate() !== day ||
+    date.getHours() !== hour ||
+    date.getMinutes() !== minute ||
+    date.getSeconds() !== second
+  ) {
+    return null;
+  }
+
+  return date;
+}

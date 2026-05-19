@@ -1,4 +1,4 @@
-import { CACHE_KEY, CACHE_TTL_MS, CCAA_NAMES, DEV_API_PATH, FUEL_FIELDS, STATIC_DATA_PATH } from './constants';
+import { API_URL, CACHE_KEY, CACHE_TTL_MS, CCAA_NAMES, DEV_API_PATH, FUEL_FIELDS, STATIC_DATA_PATH } from './constants';
 import { parseSpanishNumber, normalizeText } from './format';
 import { isOpenNow } from './hours';
 
@@ -9,11 +9,11 @@ export async function loadFuelData({ force = false } = {}) {
   }
 
   try {
-    const response = await fetch(getDataUrl(), { cache: 'no-store' });
+    const response = await fetch(getPrimaryDataUrl(), { cache: 'no-store' });
     if (!response.ok) throw new Error(`API ${response.status}`);
     const payload = await response.json();
     writeCache(payload);
-    return normalizePayload(payload, import.meta.env.DEV ? 'vite-proxy' : 'static');
+    return normalizePayload(payload, import.meta.env.DEV ? 'vite-proxy' : 'official-api');
   } catch (error) {
     if (cached) return normalizePayload(cached.payload, 'cache-stale', error);
     const fallback = await fetch(STATIC_DATA_PATH);
@@ -136,6 +136,6 @@ function byName(a, b) {
   return a.name.localeCompare(b.name, 'es');
 }
 
-function getDataUrl() {
-  return import.meta.env.DEV ? DEV_API_PATH : STATIC_DATA_PATH;
+function getPrimaryDataUrl() {
+  return import.meta.env.DEV ? DEV_API_PATH : API_URL;
 }
