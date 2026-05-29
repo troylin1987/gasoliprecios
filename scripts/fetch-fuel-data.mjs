@@ -127,11 +127,13 @@ const fetchRevePayload = async (existingReveData = {}) => {
     };
   }
 
+  // Continuar desde la última página no completada, o desde 1 si ya se completó todo
   let nextPage = Number(existingReveData.nextPage || 1);
   if (!Number.isFinite(nextPage) || nextPage < 1) nextPage = 1;
 
   const fetchedPages = [];
   let hasMore = true;
+  let lastPageFetched = nextPage;
 
   for (let requestIndex = 0; requestIndex < reveMaxPageRequestsPerRun; requestIndex += 1) {
     const pageItems = await fetchReveLocationsPage(nextPage);
@@ -139,25 +141,31 @@ const fetchRevePayload = async (existingReveData = {}) => {
 
     if (pageItems.length < revePageSize) {
       hasMore = false;
-      nextPage = 1;
+      nextPage = 1; // Resetea para la siguiente ronda
       break;
     }
 
+    lastPageFetched = nextPage;
     nextPage += 1;
   }
 
   const mergedLocations = mergeReveLocations(previousLocations, fetchedPages);
 
+  // Si ya tenemos todos los puntos, resetea nextPage a 1 para refrescar en la siguiente ronda
+  const nextPageToPersist = hasMore ? nextPage : 1;
+
   return {
     source: 'api',
     locations: mergedLocations,
-    nextPage,
+    nextPage: nextPageToPersist,
     warning: '',
     sync: {
       pagesFetched: Math.ceil(fetchedPages.length / revePageSize),
       hasMore,
       pageSize: revePageSize,
       maxPageRequestsPerRun: reveMaxPageRequestsPerRun,
+      lastPageFetched,
+      totalLocations: mergedLocations.length,
     },
   };
 };
