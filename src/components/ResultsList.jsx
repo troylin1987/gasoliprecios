@@ -1,4 +1,4 @@
-import { ExternalLink, MapPin, Clock, Fuel } from 'lucide-react';
+import { Bolt, ExternalLink, MapPin, Clock, Fuel } from 'lucide-react';
 import { formatDistance, formatPrice, mapsUrl } from '../lib/format';
 import { trackEvent } from '../lib/analytics';
 
@@ -40,6 +40,7 @@ function StationCard({ station, index, selectedFuel, text, theme }) {
   const priceEntries = Object.entries(station.prices)
     .filter(([field]) => !selectedFuel || field === selectedFuel)
     .slice(0, selectedFuel ? 1 : 5);
+  const isFuelStation = station.kind !== 'ev';
   const hasDistance = Number.isFinite(station.distance);
 
   return (
@@ -53,7 +54,7 @@ function StationCard({ station, index, selectedFuel, text, theme }) {
       <div className="flex items-start justify-between gap-3">
         <div>
           <div className="flex items-center gap-2">
-            <span className={theme === 'light' ? 'flex h-7 w-7 shrink-0 items-center justify-center rounded-md bg-gradient-to-br from-orange-500 to-orange-600 text-xs font-black text-white' : 'flex h-7 w-7 shrink-0 items-center justify-center rounded-md bg-gradient-to-br from-ember to-aqua text-xs font-black text-black'}>
+            <span className={theme === 'light' ? `flex h-7 w-7 shrink-0 items-center justify-center rounded-md text-xs font-black text-white ${isFuelStation ? 'bg-gradient-to-br from-orange-500 to-orange-600' : 'bg-gradient-to-br from-sky-500 to-blue-700'}` : `flex h-7 w-7 shrink-0 items-center justify-center rounded-md text-xs font-black text-black ${isFuelStation ? 'bg-gradient-to-br from-ember to-aqua' : 'bg-gradient-to-br from-sky-300 to-blue-500'}`}>
               {index + 1}
             </span>
             <h2 className={theme === 'light' ? 'text-base font-black text-gray-900 sm:text-lg' : 'text-base font-black text-white sm:text-lg'}>{station.brand}</h2>
@@ -71,35 +72,65 @@ function StationCard({ station, index, selectedFuel, text, theme }) {
           {hasDistance && (
             <span className={theme === 'light' ? 'block text-sm font-black text-orange-600' : 'block text-sm font-black text-aqua'}>{formatDistance(station.distance)}</span>
           )}
-          <span className={station.isOpen ? theme === 'light' ? 'text-xs font-bold text-green-700' : 'text-xs font-bold text-emerald-300' : theme === 'light' ? 'text-xs font-bold text-red-700' : 'text-xs font-bold text-red-300'}>
-            {station.isOpen ? text.results.open : text.results.closed}
-          </span>
+          {station.isOpen === true && (
+            <span className={theme === 'light' ? 'text-xs font-bold text-green-700' : 'text-xs font-bold text-emerald-300'}>
+              {text.results.open}
+            </span>
+          )}
+          {station.isOpen === false && (
+            <span className={theme === 'light' ? 'text-xs font-bold text-red-700' : 'text-xs font-bold text-red-300'}>
+              {text.results.closed}
+            </span>
+          )}
         </div>
       </div>
 
-      <p className={theme === 'light' ? 'mt-2 flex gap-2 text-xs text-gray-700' : 'mt-2 flex gap-2 text-xs text-zinc-400'}>
-        <Clock size={15} className={theme === 'light' ? 'shrink-0 text-orange-600' : 'shrink-0 text-ember'} />
-        <span>
-          <span className={theme === 'light' ? 'font-bold text-orange-600' : 'font-bold text-ember'}>{text.results.schedule}: </span>
-          {station.schedule}
-        </span>
-      </p>
+      {station.schedule && (
+        <p className={theme === 'light' ? 'mt-2 flex gap-2 text-xs text-gray-700' : 'mt-2 flex gap-2 text-xs text-zinc-400'}>
+          <Clock size={15} className={theme === 'light' ? 'shrink-0 text-orange-600' : 'shrink-0 text-ember'} />
+          <span>
+            <span className={theme === 'light' ? 'font-bold text-orange-600' : 'font-bold text-ember'}>{text.results.schedule}: </span>
+            {station.schedule}
+          </span>
+        </p>
+      )}
 
       <p className={theme === 'light' ? 'mt-2 flex items-center gap-2 text-xs font-bold text-gray-900' : 'mt-2 flex items-center gap-2 text-xs font-bold text-zinc-300'}>
-        <Fuel size={14} className={theme === 'light' ? 'text-orange-600' : 'text-aqua'} />
-        {text.results.availableFuel}
+        {isFuelStation ? <Fuel size={14} className={theme === 'light' ? 'text-orange-600' : 'text-aqua'} /> : <Bolt size={14} className={theme === 'light' ? 'text-blue-600' : 'text-sky-300'} />}
+        {isFuelStation ? text.results.availableFuel : 'Recarga electrica'}
       </p>
 
-      <div className="mt-2 grid grid-cols-1 gap-2 sm:grid-cols-2 xl:grid-cols-3">
-        {priceEntries.map(([field, price]) => (
-          <div key={field} className={theme === 'light' ? 'rounded-md border border-orange-300 bg-gradient-to-br from-orange-100 to-orange-50 px-3 py-2' : 'rounded-md border border-aqua/15 bg-gradient-to-br from-aqua/[0.08] to-ember/[0.06] px-3 py-2'}>
-            <span className={theme === 'light' ? 'flex items-center gap-1 text-[11px] text-gray-700' : 'flex items-center gap-1 text-[11px] text-zinc-400'}>
-              <Fuel size={12} /> {text.fuels[field] || field.replace('Precio ', '')}
-            </span>
-            <strong className={theme === 'light' ? 'text-sm text-gray-900 sm:text-base' : 'text-sm text-white sm:text-base'}>{formatPrice(price)}</strong>
+      {isFuelStation ? (
+        <div className="mt-2 grid grid-cols-1 gap-2 sm:grid-cols-2 xl:grid-cols-3">
+          {priceEntries.map(([field, price]) => (
+            <div key={field} className={theme === 'light' ? 'rounded-md border border-orange-300 bg-gradient-to-br from-orange-100 to-orange-50 px-3 py-2' : 'rounded-md border border-aqua/15 bg-gradient-to-br from-aqua/[0.08] to-ember/[0.06] px-3 py-2'}>
+              <span className={theme === 'light' ? 'flex items-center gap-1 text-[11px] text-gray-700' : 'flex items-center gap-1 text-[11px] text-zinc-400'}>
+                <Fuel size={12} /> {text.fuels[field] || field.replace('Precio ', '')}
+              </span>
+              <strong className={theme === 'light' ? 'text-sm text-gray-900 sm:text-base' : 'text-sm text-white sm:text-base'}>{formatPrice(price)}</strong>
+            </div>
+          ))}
+        </div>
+      ) : (
+        <div className="mt-2 grid grid-cols-1 gap-2 sm:grid-cols-2 xl:grid-cols-3">
+          <div className={theme === 'light' ? 'rounded-md border border-blue-300 bg-gradient-to-br from-blue-100 to-blue-50 px-3 py-2' : 'rounded-md border border-sky-300/25 bg-gradient-to-br from-sky-500/[0.10] to-blue-400/[0.06] px-3 py-2'}>
+            <span className={theme === 'light' ? 'text-[11px] text-gray-700' : 'text-[11px] text-zinc-300'}>Operador</span>
+            <strong className={theme === 'light' ? 'block text-sm text-gray-900 sm:text-base' : 'block text-sm text-white sm:text-base'}>{station.operator || 'No disponible'}</strong>
           </div>
-        ))}
-      </div>
+          <div className={theme === 'light' ? 'rounded-md border border-blue-300 bg-gradient-to-br from-blue-100 to-blue-50 px-3 py-2' : 'rounded-md border border-sky-300/25 bg-gradient-to-br from-sky-500/[0.10] to-blue-400/[0.06] px-3 py-2'}>
+            <span className={theme === 'light' ? 'text-[11px] text-gray-700' : 'text-[11px] text-zinc-300'}>Potencia maxima</span>
+            <strong className={theme === 'light' ? 'block text-sm text-gray-900 sm:text-base' : 'block text-sm text-white sm:text-base'}>
+              {Number.isFinite(station.maxPowerKw) ? `${station.maxPowerKw.toFixed(0)} kW` : 'No disponible'}
+            </strong>
+          </div>
+          <div className={theme === 'light' ? 'rounded-md border border-blue-300 bg-gradient-to-br from-blue-100 to-blue-50 px-3 py-2' : 'rounded-md border border-sky-300/25 bg-gradient-to-br from-sky-500/[0.10] to-blue-400/[0.06] px-3 py-2'}>
+            <span className={theme === 'light' ? 'text-[11px] text-gray-700' : 'text-[11px] text-zinc-300'}>Conectores</span>
+            <strong className={theme === 'light' ? 'block text-sm text-gray-900 sm:text-base' : 'block text-sm text-white sm:text-base'}>
+              {station.connectors?.length ? station.connectors.slice(0, 3).join(', ') : 'No disponible'}
+            </strong>
+          </div>
+        </div>
+      )}
 
       <div className={theme === 'light' ? 'mt-3 flex items-center justify-end gap-2 text-xs font-black text-orange-600 transition group-hover:text-orange-700 sm:text-sm' : 'mt-3 flex items-center justify-end gap-2 text-xs font-black text-ember transition group-hover:text-orange-300 sm:text-sm'}>
         {text.results.directions} <ExternalLink size={15} />

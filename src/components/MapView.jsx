@@ -12,6 +12,13 @@ const stationIcon = new L.DivIcon({
   iconAnchor: [14, 14],
 });
 
+const chargingIcon = new L.DivIcon({
+  className: 'ev-marker',
+  html: '<span></span>',
+  iconSize: [28, 28],
+  iconAnchor: [14, 14],
+});
+
 export function MapView({ results, userLocation, selectedFuel, text, hasSearched, theme }) {
   const center = userLocation || results[0] || { lat: 40.4168, lng: -3.7038 };
   const bounds = useMemo(() => {
@@ -47,7 +54,7 @@ export function MapView({ results, userLocation, selectedFuel, text, hasSearched
           </CircleMarker>
         )}
         {results.map((station) => (
-          <Marker position={[station.lat, station.lng]} icon={stationIcon} key={station.id}>
+          <Marker position={[station.lat, station.lng]} icon={station.kind === 'ev' ? chargingIcon : stationIcon} key={station.id}>
             <Popup className="station-popup">
               <div className="min-w-60 space-y-2 text-sm">
                 <strong className="font-display text-xl tracking-normal">{station.brand}</strong>
@@ -56,25 +63,47 @@ export function MapView({ results, userLocation, selectedFuel, text, hasSearched
                   <br />
                   {station.municipality || station.locality}
                 </p>
-                <p>
-                  <b>{text.results.schedule}:</b> {station.schedule}
-                </p>
+                {station.schedule && (
+                  <p>
+                    <b>{text.results.schedule}:</b> {station.schedule}
+                  </p>
+                )}
+                {station.kind === 'ev' && station.operator && (
+                  <p>
+                    <b>Operador:</b> {station.operator}
+                  </p>
+                )}
+                {station.kind === 'ev' && Number.isFinite(station.maxPowerKw) && (
+                  <p>
+                    <b>Potencia maxima:</b> {station.maxPowerKw.toFixed(0)} kW
+                  </p>
+                )}
                 {Number.isFinite(station.distance) && (
                   <p>
                     <b>{text.results.distance}:</b> {formatDistance(station.distance)}
                   </p>
                 )}
-                <div className="space-y-1">
-                  <p className="font-semibold">{text.results.availableFuel}:</p>
-                  {Object.entries(station.prices)
-                    .filter(([field]) => !selectedFuel || field === selectedFuel)
-                    .slice(0, selectedFuel ? 1 : 4)
-                    .map(([field, price]) => (
-                      <p key={field}>
-                        {text.fuels[field]}: <strong>{formatPrice(price)}</strong>
-                      </p>
+                {station.kind === 'fuel' ? (
+                  <div className="space-y-1">
+                    <p className="font-semibold">{text.results.availableFuel}:</p>
+                    {Object.entries(station.prices)
+                      .filter(([field]) => !selectedFuel || field === selectedFuel)
+                      .slice(0, selectedFuel ? 1 : 4)
+                      .map(([field, price]) => (
+                        <p key={field}>
+                          {text.fuels[field]}: <strong>{formatPrice(price)}</strong>
+                        </p>
+                      ))}
+                  </div>
+                ) : (
+                  <div className="space-y-1">
+                    <p className="font-semibold">Conectores:</p>
+                    {(station.connectors || []).slice(0, 4).map((connector) => (
+                      <p key={connector}>{connector}</p>
                     ))}
-                </div>
+                    {!station.connectors?.length && <p>No disponible</p>}
+                  </div>
+                )}
                 <a
                   className="text-sm font-bold text-aqua"
                   href={mapsUrl(station)}

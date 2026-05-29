@@ -14,6 +14,7 @@ La aplicación está pensada con filosofía **mobile first**, soporte de **tema 
 - Ordenación de resultados por cercanía o por precio.
 - Vista de lista scrollable con las 20 estaciones más relevantes.
 - Vista de mapa con OpenStreetMap y marcadores interactivos.
+- Integracion de puntos de recarga electricos (REVE) junto con gasolineras en el mismo buscador.
 - Enlaces directos a Google Maps para llegar a cada estación.
 - Interfaz multidioma con banderas regionales para idiomas co-oficiales.
 - **Selector de tema oscuro y claro** con adaptación de colores y accesibilidad mejorada para usuarios con dificultades visuales.
@@ -27,6 +28,14 @@ Los datos proceden de la API pública de precios de carburantes del Ministerio p
 ```text
 https://sedeaplicaciones.minetur.gob.es/ServiciosRESTCarburantes/PreciosCarburantes/EstacionesTerrestres/
 ```
+
+Y de la API publica de REVE para localizaciones de recarga electrica:
+
+```text
+https://www.mapareve.es/api/external/v1
+```
+
+La clave de REVE se usa solo en el pipeline de GitHub Actions mediante el secret `REVE_API_KEY`.
 
 La información oficial indica que los precios se actualizan cada media hora.
 
@@ -96,6 +105,7 @@ Para evitar problemas de CORS y reducir llamadas innecesarias:
 - En producción se sirve un JSON estático desde el mismo origen de GitHub Pages.
 - GitHub Actions refresca los datos oficiales antes de compilar y publicar.
 - La aplicación usa caché del navegador para mantener una experiencia rápida.
+- La actualizacion de REVE se hace por lotes y con cache para respetar el limite de 5 solicitudes por hora.
 - Cada build genera un número de versión visible en el footer y un `version.json`.
 - Los assets se publican con hash de contenido para evitar servir código antiguo tras un despliegue.
 

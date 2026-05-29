@@ -2,6 +2,10 @@ import { mkdir, readFile, writeFile } from 'node:fs/promises';
 
 const apiUrl =
   'https://sedeaplicaciones.minetur.gob.es/ServiciosRESTCarburantes/PreciosCarburantes/EstacionesTerrestres/';
+const reveApiBaseUrl = 'https://www.mapareve.es/api/external/v1';
+const reveApiKey = process.env.REVE_API_KEY || '';
+const revePageSize = 100;
+const reveMaxPageRequestsPerRun = Math.max(1, Number(process.env.REVE_MAX_PAGES_PER_REFRESH || 2));
 
 const maxAttempts = 5;
 const retryDelayMs = 1500;
@@ -68,8 +72,99 @@ const readFallbackPayload = async () => {
   return fallbackPayload;
 };
 
+const fetchReveLocationsPage = async (page) => {
+  const url = new URL(`${reveApiBaseUrl}/locations`);
+  url.searchParams.set('page', String(page));
+  url.searchParams.set('limit', String(revePageSize));
+
+  const response = await fetch(url, {
+    headers: {
+      accept: 'application/json',
+      'x-api-key': reveApiKey,
+      'user-agent': 'gasoliprecios-data-refresh/1.0',
+    },
+  });
+
+  if (!response.ok) {
+    const body = (await response.text()).slice(0, 180).replace(/\s+/g, ' ').trim();
+    throw new Error(
+      `REVE locations request failed: ${response.status} ${response.statusText}${body ? ` | ${body}` : ''}`,
+    );
+  }
+
+  const payload = await response.json();
+  if (!Array.isArray(payload)) {
+    throw new Error('REVE locations request returned an unexpected payload');
+  }
+
+  return payload;
+};
+
+const mergeReveLocations = (existingLocations = [], incomingLocations = []) => {
+  const byId = new Map();
+
+  existingLocations.forEach((location) => {
+    if (location && typeof location.id === 'string') byId.set(location.id, location);
+  });
+
+  incomingLocations.forEach((location) => {
+    if (location && typeof location.id === 'string') byId.set(location.id, location);
+  });
+
+  return [...byId.values()].sort((a, b) => String(a.id).localeCompare(String(b.id), 'es'));
+};
+
+const fetchRevePayload = async (existingReveData = {}) => {
+  const previousLocations = Array.isArray(existingReveData.locations) ? existingReveData.locations : [];
+
+  if (!reveApiKey) {
+    console.warn('REVE_API_KEY is not defined. Keeping previous charging-point snapshot.');
+    return {
+      ...existingReveData,
+      source: previousLocations.length ? 'cache-no-key' : 'empty-no-key',
+      locations: previousLocations,
+      warning: 'missing-api-key',
+    };
+  }
+
+  let nextPage = Number(existingReveData.nextPage || 1);
+  if (!Number.isFinite(nextPage) || nextPage < 1) nextPage = 1;
+
+  const fetchedPages = [];
+  let hasMore = true;
+
+  for (let requestIndex = 0; requestIndex < reveMaxPageRequestsPerRun; requestIndex += 1) {
+    const pageItems = await fetchReveLocationsPage(nextPage);
+    fetchedPages.push(...pageItems);
+
+    if (pageItems.length < revePageSize) {
+      hasMore = false;
+      nextPage = 1;
+      break;
+    }
+
+    nextPage += 1;
+  }
+
+  const mergedLocations = mergeReveLocations(previousLocations, fetchedPages);
+
+  return {
+    source: 'api',
+    locations: mergedLocations,
+    nextPage,
+    warning: '',
+    sync: {
+      pagesFetched: Math.ceil(fetchedPages.length / revePageSize),
+      hasMore,
+      pageSize: revePageSize,
+      maxPageRequestsPerRun: reveMaxPageRequestsPerRun,
+    },
+  };
+};
+
 let payload;
 let usedFallback = false;
+const existingPayload = await readExistingPayload();
 
 try {
   payload = await fetchLatestPayload();
@@ -80,23 +175,45 @@ try {
   console.warn('Using fallback data from public/sampledata.json');
 }
 
+let revePayload;
+try {
+  revePayload = await fetchRevePayload(existingPayload?.ReveData);
+} catch (error) {
+  console.warn(`REVE source unavailable: ${error.message}`);
+  const previousReveData = existingPayload?.ReveData;
+  const previousLocations = Array.isArray(previousReveData?.locations) ? previousReveData.locations : [];
+  revePayload = {
+    ...(previousReveData || {}),
+    source: previousLocations.length ? 'cache-stale' : 'empty-error',
+    warning: 'reve-unavailable',
+    locations: previousLocations,
+  };
+}
+
 await mkdir('public', { recursive: true });
 await mkdir('sampledata', { recursive: true });
-const existingPayload = await readExistingPayload();
-const shouldPersist = !existingPayload || isNewerPayload(payload, existingPayload);
+const nextSnapshot = {
+  ...payload,
+  ReveData: revePayload,
+};
+
+const shouldPersist = !existingPayload || JSON.stringify(existingPayload) !== JSON.stringify(nextSnapshot);
 
 if (shouldPersist) {
-  const json = JSON.stringify(payload);
+  const json = JSON.stringify(nextSnapshot);
   await writeFile('public/sampledata.json', json);
   await writeFile('sampledata/sampledata.json', json);
 } else {
   payload = existingPayload;
-  console.warn('Incoming payload is not newer. Keeping existing sampledata snapshot.');
+  console.warn('Incoming payload is unchanged. Keeping existing sampledata snapshot.');
 }
 
 const source = usedFallback ? 'fallback cache' : 'official API';
 const persisted = shouldPersist ? 'updated' : 'kept';
-console.log(`Fuel data ${persisted} from ${source}: ${payload.Fecha}, ${payload.ListaEESSPrecio.length} stations`);
+const reveCount = Array.isArray(revePayload?.locations) ? revePayload.locations.length : 0;
+console.log(
+  `Fuel data ${persisted} from ${source}: ${payload.Fecha}, ${payload.ListaEESSPrecio.length} stations | REVE points: ${reveCount}`,
+);
 
 async function readExistingPayload() {
   try {
@@ -105,41 +222,4 @@ async function readExistingPayload() {
   } catch {
     return null;
   }
-}
-
-function isNewerPayload(nextPayload, currentPayload) {
-  const nextDate = parseSpanishDateTime(nextPayload?.Fecha);
-  const currentDate = parseSpanishDateTime(currentPayload?.Fecha);
-
-  if (!nextDate) return false;
-  if (!currentDate) return true;
-  return nextDate.getTime() > currentDate.getTime();
-}
-
-function parseSpanishDateTime(value) {
-  if (typeof value !== 'string') return null;
-  const match = value.trim().match(/^(\d{1,2})\/(\d{1,2})\/(\d{4})\s+(\d{1,2}):(\d{2})(?::(\d{2}))?$/);
-  if (!match) return null;
-
-  const [, dayStr, monthStr, yearStr, hourStr, minuteStr, secondStr = '0'] = match;
-  const day = Number(dayStr);
-  const month = Number(monthStr);
-  const year = Number(yearStr);
-  const hour = Number(hourStr);
-  const minute = Number(minuteStr);
-  const second = Number(secondStr);
-
-  const date = new Date(year, month - 1, day, hour, minute, second);
-  if (
-    date.getFullYear() !== year ||
-    date.getMonth() !== month - 1 ||
-    date.getDate() !== day ||
-    date.getHours() !== hour ||
-    date.getMinutes() !== minute ||
-    date.getSeconds() !== second
-  ) {
-    return null;
-  }
-
-  return date;
 }

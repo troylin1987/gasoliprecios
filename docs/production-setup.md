@@ -93,6 +93,7 @@ www.gasoliprecios.com
 - Pages configurado con `GitHub Actions`.
 - Workflow ejecutado correctamente.
 - Secret `VITE_GA_MEASUREMENT_ID` creado si se quiere Analytics.
+- Secret `REVE_API_KEY` creado para sincronizar puntos de recarga de Mapa REVE.
 - Dominio configurado en `Settings > Pages`.
 - DNS propagado.
 - HTTPS activado.

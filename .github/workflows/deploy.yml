@@ -4,8 +4,19 @@ on:
   push:
     branches: [main]
   schedule:
-    - cron: "7,37 * * * *"
+    # Refresca datos cada 30 minutos (en los minutos 0 y 30 de cada hora)
+    - cron: "0,30 * * * *"
   workflow_dispatch:
+# ---
+# Este workflow refresca los datos de gasolineras y electrolineras cada 30 minutos usando GitHub Actions.
+#
+# - El script scripts/fetch-fuel-data.mjs descarga ambos tipos de datos y los guarda en public/sampledata.json.
+# - El límite de la API de electrolineras (REVE) se respeta automáticamente.
+# - Todos los usuarios consumen el mismo snapshot actualizado.
+#
+# Para cambiar la frecuencia, ajusta el campo 'cron' arriba.
+#
+# Si necesitas forzar un refresh manual, puedes lanzar el workflow desde la pestaña Actions de GitHub.
 
 permissions:
   contents: write
@@ -33,6 +44,8 @@ jobs:
         run: npm ci
       - name: Refresh official fuel data
         run: npm run update:data
+        env:
+          REVE_API_KEY: ${{ secrets.REVE_API_KEY }}
       - name: Persist refreshed sampledata
         run: |
           if git diff --quiet -- public/sampledata.json sampledata/sampledata.json; then

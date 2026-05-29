@@ -9,13 +9,13 @@ export function searchStations(stations, filters, userLocation) {
     .filter((station) => !filters.ccaaId || station.ccaaId === filters.ccaaId)
     .filter((station) => !filters.provinceId || station.provinceId === filters.provinceId)
     .filter((station) => !filters.municipalityId || station.municipalityId === filters.municipalityId)
-    .filter((station) => !filters.fuel || station.prices[filters.fuel] !== undefined)
-    .filter((station) => !filters.openNow || station.isOpen === true)
+    .filter((station) => !filters.fuel || station.kind !== 'fuel' || station.prices[filters.fuel] !== undefined)
+    .filter((station) => !filters.openNow || station.isOpen !== false)
     .filter((station) => !query || station.searchText.includes(query))
     .map((station) => ({
       ...station,
       distance: hasLocation ? distanceKm(userLocation, station) : null,
-      selectedPrice: filters.fuel ? station.prices[filters.fuel] : bestPrice(station),
+      selectedPrice: station.kind === 'fuel' ? (filters.fuel ? station.prices[filters.fuel] : bestPrice(station)) : null,
     }));
 
   const nearest = filtered
