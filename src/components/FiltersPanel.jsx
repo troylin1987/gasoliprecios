@@ -32,6 +32,20 @@ export function FiltersPanel({
 
       <div className="space-y-3">
         <label className="block">
+          <span className={theme === 'light' ? 'mb-1 block text-xs font-bold text-gray-700' : 'mb-1 block text-xs font-bold text-zinc-200'}>
+            {text.filters.stationTypeLabel || 'Tipo de estación'}
+          </span>
+          <select
+            className={theme === 'light' ? 'w-full rounded-lg border border-gray-300 bg-white px-3 py-2 text-sm text-gray-900 outline-none transition focus:border-orange-500 focus:ring-2 focus:ring-orange-200' : 'w-full rounded-lg border border-white/10 bg-black px-3 py-2 text-sm text-white outline-none transition focus:border-aqua focus:ring-2 focus:ring-aqua/20'}
+            value={filters.stationType || 'all'}
+            onChange={e => update({ stationType: e.target.value })}
+          >
+            <option value="all">{text.filters.stationTypeAll || 'Todo'}</option>
+            <option value="fuel">{text.filters.stationTypeFuel || 'Gasolineras'}</option>
+            <option value="ev">{text.filters.stationTypeEv || 'Puntos de carga'}</option>
+          </select>
+        </label>
+        <label className="block">
           <span className={theme === 'light' ? 'mb-1 flex items-center gap-2 text-xs font-bold text-gray-700' : 'mb-1 flex items-center gap-2 text-xs font-bold text-zinc-200'}>
             <Search size={14} className={theme === 'light' ? 'text-orange-600' : 'text-aqua'} /> {text.filters.queryLabel}
           </span>
@@ -70,14 +84,17 @@ export function FiltersPanel({
           theme={theme}
         />
 
-        <Select
-          label={text.filters.fuel}
-          value={filters.fuel}
-          onChange={(value) => update({ fuel: value })}
-          options={FUEL_FIELDS.map((field) => ({ id: field, name: text.fuels[field] }))}
-          allLabel={text.filters.allFuel}
-          theme={theme}
-        />
+
+        {(filters.stationType === 'all' || filters.stationType === '' || filters.stationType === undefined || filters.stationType === 'fuel') && (
+          <Select
+            label={text.filters.fuel}
+            value={filters.fuel}
+            onChange={(value) => update({ fuel: value })}
+            options={FUEL_FIELDS.map((field) => ({ id: field, name: text.fuels[field] }))}
+            allLabel={text.filters.allFuel}
+            theme={theme}
+          />
+        )}
 
         <label className={theme === 'light' ? 'flex cursor-pointer items-center justify-between gap-3 rounded-lg border border-gray-300 bg-orange-50 px-3 py-2 text-xs font-bold text-gray-700 transition hover:border-orange-400' : 'flex cursor-pointer items-center justify-between gap-3 rounded-lg border border-white/10 bg-gradient-to-r from-white/[0.06] to-aqua/[0.08] px-3 py-2 text-xs font-bold text-zinc-200 transition hover:border-aqua/50'}>
           <span>{text.filters.openNow}</span>

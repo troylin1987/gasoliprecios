@@ -1,6 +1,8 @@
+
 export function About({ data, text, theme }) {
   const municipalityCount = new Set(data.stations.map((station) => station.municipalityId)).size;
   const fuelCount = new Set(data.stations.flatMap((station) => Object.keys(station.prices))).size;
+  const evCount = data.stations.filter((station) => station.kind === 'ev').length;
 
   return (
     <main className={theme === 'light' ? 'mx-auto max-w-7xl px-4 py-6 sm:px-6' : 'mx-auto max-w-7xl px-4 py-6 sm:px-6'}>
@@ -18,9 +20,9 @@ export function About({ data, text, theme }) {
 
         <div className="grid grid-cols-2 gap-3">
           <Stat label={text.about.stations} value={data.stations.length.toLocaleString('es-ES')} tone="ember" theme={theme} />
+          <Stat label={text.about.evPoints} value={evCount.toLocaleString('es-ES')} tone="aqua" theme={theme} />
           <Stat label={text.about.fuels} value={fuelCount} tone="aqua" theme={theme} />
           <Stat label={text.about.territories} value={municipalityCount.toLocaleString('es-ES')} tone="aqua" theme={theme} />
-          <Stat label={text.about.source} value={text.about.sourceValue} tone="ember" theme={theme} />
         </div>
       </section>
 
@@ -37,6 +39,22 @@ export function About({ data, text, theme }) {
             ))}
           </ul>
         </div>
+      </section>
+
+      <section className={theme === 'light' ? 'mt-8 rounded-lg border border-gray-300 bg-gray-100 p-5' : 'mt-8 rounded-lg border border-white/10 bg-gradient-to-r from-ember/[0.12] via-zinc-950 to-aqua/[0.12] p-5'}>
+        <h2 className={theme === 'light' ? 'font-display text-3xl tracking-normal text-gray-900' : 'font-display text-3xl tracking-normal text-white'}>Fuentes oficiales</h2>
+        <ul className={theme === 'light' ? 'mt-3 space-y-2 text-sm leading-6 text-gray-700' : 'mt-3 space-y-2 text-sm leading-6 text-zinc-300'}>
+          <li>
+            <a href="https://geoportalgasolineras.es" target="_blank" rel="noopener noreferrer" className={theme === 'light' ? 'text-orange-700 underline' : 'text-aqua underline'}>
+              Geoportal de Gasolineras (MITMA)
+            </a>
+          </li>
+          <li>
+            <a href="https://www.ree.es/es/actividades/operacion-del-sistema-electrico/puntos-de-recarga" target="_blank" rel="noopener noreferrer" className={theme === 'light' ? 'text-orange-700 underline' : 'text-aqua underline'}>
+              REVE (Red Eléctrica de España)
+            </a>
+          </li>
+        </ul>
       </section>
 
       <section className={theme === 'light' ? 'mt-8 rounded-lg border border-gray-300 bg-gray-100 p-5' : 'mt-8 rounded-lg border border-white/10 bg-gradient-to-r from-ember/[0.12] via-zinc-950 to-aqua/[0.12] p-5'}>

@@ -5,10 +5,17 @@ export function searchStations(stations, filters, userLocation) {
   const query = normalizeText(filters.query);
   const hasLocation = userLocation && Number.isFinite(userLocation.lat) && Number.isFinite(userLocation.lng);
 
-  const filtered = stations
+  // Filtrado por tipo de estación
+  let filtered = stations
     .filter((station) => !filters.ccaaId || station.ccaaId === filters.ccaaId)
     .filter((station) => !filters.provinceId || station.provinceId === filters.provinceId)
     .filter((station) => !filters.municipalityId || station.municipalityId === filters.municipalityId)
+    .filter((station) => {
+      if (!filters.stationType || filters.stationType === 'all') return true;
+      if (filters.stationType === 'fuel') return station.kind === 'fuel';
+      if (filters.stationType === 'ev') return station.kind === 'ev';
+      return true;
+    })
     .filter((station) => !filters.fuel || station.kind !== 'fuel' || station.prices[filters.fuel] !== undefined)
     .filter((station) => !filters.openNow || station.isOpen !== false)
     .filter((station) => !query || station.searchText.includes(query))
@@ -18,15 +25,15 @@ export function searchStations(stations, filters, userLocation) {
       selectedPrice: station.kind === 'fuel' ? (filters.fuel ? station.prices[filters.fuel] : bestPrice(station)) : null,
     }));
 
-  const nearest = filtered
-    .sort((a, b) => compareNullable(a.distance, b.distance))
-    .slice(0, 20);
+  // Siempre limitar a 20 resultados del tipo seleccionado
+  filtered = filtered.sort((a, b) => compareNullable(a.distance, b.distance)).slice(0, 20);
 
   if (filters.sortBy === 'price') {
-    return nearest.sort((a, b) => compareNullable(a.selectedPrice, b.selectedPrice) || compareNullable(a.distance, b.distance));
+    // Ordenar por precio si hay, si no por distancia
+    return filtered.sort((a, b) => compareNullable(a.selectedPrice, b.selectedPrice) || compareNullable(a.distance, b.distance));
   }
 
-  return nearest;
+  return filtered;
 }
 
 function bestPrice(station) {
