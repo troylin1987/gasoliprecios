@@ -7,7 +7,7 @@
     },
     "app": {
       "name": "GASOLIPRECIOS",
-      "tagline": "Buscador de gasolina barata",
+      "tagline": "Buscador de gasolina barata y puntos de carga eléctrica",
       "updated": "Actualizado",
       "loading": "Cargando..."
     },
@@ -20,8 +20,8 @@
       "language": "Selección de idioma"
     },
     "filters": {
-      "eyebrow": "Buscador de gasolineras",
-      "title": "Buscador de gasolina barata y puntos de carga",
+      "eyebrow": "Buscador de gasolineras y puntos de carga",
+      "title": "Buscador de gasolina barata y puntos de carga eléctrica",
         "stationTypeLabel": "Tipo de estación",
         "stationTypeAll": "Todo",
         "stationTypeFuel": "Gasolineras",
@@ -75,13 +75,14 @@
     },
     "about": {
       "eyebrow": "Acerca de",
-      "headline": "GASOLIPRECIOS: basada en datos oficiales para decidir mejor dónde repostar.",
-      "intro": "Utilizamos la API pública de precios de carburantes del Ministerio para la Transformación Digital y de la Función Pública para mostrar estaciones de servicio, combustibles disponibles, horarios y precios vigentes. La aplicación prioriza búsquedas cercanas, filtros por territorio y una experiencia rápida en escritorio y móvil.",
+      "headline": "GASOLIPRECIOS: gasolina barata y puntos de carga eléctrica con datos oficiales.",
+      "intro": "Utilizamos la API pública de precios de carburantes del Ministerio para la Transformación Digital y de la Función Pública y la API REVE de Red Eléctrica de España para mostrar estaciones de servicio y puntos de recarga, combustibles disponibles, horarios y precios vigentes. La aplicación prioriza búsquedas cercanas, filtros por territorio y una experiencia rápida en escritorio y móvil.",
       "update": "La actualización de precios se realiza cada media hora, con los precios en vigor en ese momento.",
       "creatorPrefix": "Este proyecto ha sido creado por",
       "creatorName": "Mario Gijón",
       "creatorSuffix": "y se pone a disposición de cualquier usuario de forma gratuita.",
       "maps": "La atribución cartográfica corresponde a OpenStreetMap y los enlaces de ruta se abren en Google Maps para facilitar la navegación.",
+      "sources": "Fuentes oficiales: REVE (https://www.mapareve.es/) y Geoportal de Gasolineras (https://geoportalgasolineras.es/geoportal-instalaciones/Inicio)",
       "statsTitle": "Agradecimientos",
       "statsSubtitle": "",
       "stations": "Estaciones",

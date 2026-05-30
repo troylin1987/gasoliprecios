@@ -1,12 +1,13 @@
 # GASOLIPRECIOS
 
-**GASOLIPRECIOS** es una aplicación web responsive para consultar estaciones de servicio en España con precios oficiales de carburantes, filtros territoriales, búsqueda por texto, estado de apertura, ordenación por cercanía o precio y visualización en mapa.
+
+**GASOLIPRECIOS** es una aplicación web responsive para consultar estaciones de servicio y puntos de carga eléctrica en España, con precios oficiales de carburantes, filtros territoriales, búsqueda por texto, estado de apertura, ordenación por cercanía o precio y visualización en mapa.
 
 La aplicación está pensada con filosofía **mobile first**, soporte de **tema oscuro y claro** con mejora de accesibilidad, y una experiencia rápida tanto en escritorio como en móvil.
 
 ## Funcionalidades
 
-- Búsqueda de gasolineras cercanas usando la ubicación del usuario.
+- Búsqueda de gasolineras y puntos de carga eléctrica cercanos usando la ubicación del usuario.
 - Filtros por comunidad autónoma, provincia y municipio.
 - Búsqueda libre por rótulo, dirección, localidad, municipio, provincia o código postal.
 - Filtro por tipo de combustible.
@@ -14,26 +15,20 @@ La aplicación está pensada con filosofía **mobile first**, soporte de **tema 
 - Ordenación de resultados por cercanía o por precio.
 - Vista de lista scrollable con las 20 estaciones más relevantes.
 - Vista de mapa con OpenStreetMap y marcadores interactivos.
-- Integracion de puntos de recarga electricos (REVE) junto con gasolineras en el mismo buscador.
+- Integración de puntos de recarga eléctricos (REVE) junto con gasolineras en el mismo buscador.
 - Enlaces directos a Google Maps para llegar a cada estación.
 - Interfaz multidioma con banderas regionales para idiomas co-oficiales.
 - **Selector de tema oscuro y claro** con adaptación de colores y accesibilidad mejorada para usuarios con dificultades visuales.
 - Google Analytics opcional, sólo con consentimiento del usuario.
 - Consentimiento de privacidad obligatorio en pantalla completa.
 
-## Fuente de datos
 
-Los datos proceden de la API pública de precios de carburantes del Ministerio para la Transformación Digital y de la Función Pública:
+## Fuentes oficiales de datos
 
-```text
-https://sedeaplicaciones.minetur.gob.es/ServiciosRESTCarburantes/PreciosCarburantes/EstacionesTerrestres/
-```
+- [Geoportal de Gasolineras (MITMA)](https://geoportalgasolineras.es/geoportal-instalaciones/Inicio)
+- [REVE (Red Eléctrica de España)](https://www.mapareve.es/)
 
-Y de la API publica de REVE para localizaciones de recarga electrica:
-
-```text
-https://www.mapareve.es/api/external/v1
-```
+Los datos proceden de la API pública de precios de carburantes del Ministerio para la Transformación Digital y de la Función Pública y de la API pública de REVE para puntos de recarga eléctrica.
 
 La clave de REVE se usa solo en el pipeline de GitHub Actions mediante el secret `REVE_API_KEY`.
 
